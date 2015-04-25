@@ -1,0 +1,4443 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Soyeon Hwang</title>
+
+<style>
+
+#tumblr_controls {
+
+display: none;
+
+}
+
+{
+  "name": "fullpage.js",
+  "version": "2.6.2",
+  "homepage": "http://alvarotrigo.com/fullPage/",
+  "authors": [
+    "Alvaro Trigo https://github.com/alvarotrigo"
+  ],
+  "description": "Create  beautiful fullscreen scrolling websites",
+  "main": [
+    "jquery.fullPage.js",
+    "jquery.fullPage.css",
+    "vendors/jquery.easings.min.js",
+    "vendors/jquery.slimscroll.min.js"
+  ],
+  "keywords": [
+    "jquery",
+    "scrolling",
+    "single_page",
+    "one_page",
+    "sliding"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples"
+  ],
+  "dependencies": {
+      "jquery": "1.x"
+    }
+}
+  
+  @CHARSET "ISO-8859-1";
+/* Reset CSS
+ * --------------------------------------- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td {
+    padding: 0;
+    margin: 0;
+}
+a{
+	text-decoration:none;
+}
+table {
+    border-spacing: 0;
+}
+fieldset,img {
+    border: 0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-weight: normal;
+    font-style: normal;
+}
+strong{
+	font-weight: bold;
+}
+ol,ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+caption,th {
+    text-align: left;
+
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    font-size: 100%;
+    margin:0;
+    padding:0;
+    color:#444;
+}
+q:before,q:after {
+    content:'';
+}
+abbr,acronym { border: 0;
+}
+
+
+/* Custom CSS
+ * --------------------------------------- */
+body{
+	font-family: arial,helvetica;
+	color: #333;
+	color: rgba(0,0,0,0.5);
+}
+.wrap{
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	position: relative;
+}
+h1{
+	font-size: 6em;
+}
+p{
+	font-size: 2em;
+}
+.intro p{
+	width: 50%;
+	margin: 0 auto;
+	font-size: 1.5em;
+}
+.section{
+	text-align:center;
+}
+#menu li {
+	display:inline-block;
+	margin: 10px;
+	color: #000;
+	background:#fff;
+	background: rgba(255,255,255, 0.5);
+	-webkit-border-radius: 10px;
+            border-radius: 10px;
+}
+#menu li.active{
+	background:#666;
+	background: rgba(0,0,0, 0.5);
+	color: #fff;
+}
+#menu li a{
+	text-decoration:none;
+	color: #000;
+}
+#menu li.active a:hover{
+	color: #000;
+}
+#menu li:hover{
+	background: rgba(255,255,255, 0.8);
+}
+#menu li a,
+#menu li.active a{
+	padding: 9px 18px;
+	display:block;
+}
+#menu li.active a{
+	color: #fff;
+}
+#menu{
+	position:fixed;
+	top:0;
+	left:0;
+	height: 40px;
+	z-index: 70;
+	width: 100%;
+	padding: 0;
+	margin:0;
+}
+.twitter-share-button{
+	position: fixed;
+	z-index: 99;
+	right: 149px;
+	top: 9px;
+}
+#download{
+	margin: 10px 0 0 0;
+	padding: 15px 10px;
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	background-color: #49afcd;
+	background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: -ms-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from( #5bc0de),to( #2f96b4));
+	background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: linear-gradient(top, #5bc0de, #2f96b4);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2f96b4', GradientType=0);
+	border-color: #2f96b4 #2f96b4 #1f6377;
+	border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	vertical-align: middle;
+	cursor: pointer;
+	display: inline-block;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+}
+#download a{
+	text-decoration:none;
+	color:#fff;
+}
+#download:hover{
+	text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+	background-color: #2F96B4;
+	background-position: 0 -15px;
+	-webkit-transition: background-position .1s linear;
+	-moz-transition: background-position .1s linear;
+	-ms-transition: background-position .1s linear;
+	-o-transition: background-position .1s linear;
+	transition: background-position .1s linear;
+}
+#infoMenu{
+	height: 20px;
+	color: #f2f2f2;
+	position:fixed;
+	z-index:70;
+	bottom:0;
+	width:100%;
+	text-align:right;
+	font-size:0.9em;
+	padding:8px 0 8px 0;
+}
+#infoMenu ul{
+	padding: 0 40px;
+}
+#infoMenu li a{
+	display: block;
+	margin: 0 22px 0 0;
+	color: #333;
+}
+#infoMenu li a:hover{
+	text-decoration:underline;
+}
+#infoMenu li{
+	display:inline-block;
+	position:relative;
+}
+#examplesList{
+	display:none;
+	background: #282828;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	padding: 20px;
+	float: left;
+	position: absolute;
+	bottom: 29px;
+	right: 0;
+	width:638px;
+	text-align:left;
+}
+#examplesList ul{
+	padding:0;
+}
+#examplesList ul li{
+	display:block;
+	margin: 5px 0;
+}
+#examplesList ul li a{
+	color: #BDBDBD;
+	margin:0;
+}
+#examplesList ul li a:hover{
+	color: #f2f2f2;
+}
+#examplesList .column{
+	float: left;
+	margin: 0 20px 0 0;
+}
+#examplesList h3{
+	color: #f2f2f2;
+	font-size: 1.2em;
+	margin: 0 0 15px 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+	padding: 0 0 5px 0;
+}
+
+
+
+/* Demos Menu
+ * --------------------------------------- */
+ #demosMenu{
+	position:fixed;
+	bottom: 10px;
+	right:10px;
+	z-index: 999;
+ }
+
+
+
+
+/**
+ * fullPage 2.6.0
+ * https://github.com/alvarotrigo/fullPage.js
+ * MIT licensed
+ *
+ * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+
+    /*Avoid flicker on slides transitions for mobile phones #336 */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+#superContainer {
+    height: 100%;
+    position: relative;
+
+    /* Touch detection for Windows 8 */
+    -ms-touch-action: none;
+
+    /* IE 11 on Windows Phone 8.1*/
+    touch-action: none;
+}
+.fp-section {
+    position: relative;
+    -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
+    -moz-box-sizing: border-box; /* <=28 */
+    box-sizing: border-box;
+}
+.fp-slide {
+    float: left;
+}
+.fp-slide, .fp-slidesContainer {
+    height: 100%;
+    display: block;
+}
+.fp-slides {
+    z-index:1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
+    transition: all 0.3s ease-out;
+}
+.fp-section.fp-table, .fp-slide.fp-table {
+    display: table;
+    table-layout:fixed;
+    width: 100%;
+}
+.fp-tableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+.fp-slidesContainer {
+    float: left;
+    position: relative;
+}
+.fp-controlArrow {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -38px;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.fp-controlArrow.fp-prev {
+    left: 15px;
+    width: 0;
+    border-width: 38.5px 34px 38.5px 0;
+    border-color: transparent #eee transparent transparent;
+}
+.fp-controlArrow.fp-next {
+    right: 15px;
+    border-width: 38.5px 0 38.5px 34px;
+    border-color: transparent transparent transparent #eee;
+}
+.fp-scrollable {
+    overflow: scroll;
+}
+.fp-notransition {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+#fp-nav {
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 50%;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+}
+#fp-nav.right {
+    right: 17px;
+}
+#fp-nav.left {
+    left: 17px;
+}
+.fp-slidesNav{
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    opacity: 1;
+}
+.fp-slidesNav.bottom {
+    bottom: 17px;
+}
+.fp-slidesNav.top {
+    top: 17px;
+}
+#fp-nav ul,
+.fp-slidesNav ul {
+  margin: 0;
+  padding: 0;
+}
+#fp-nav ul li,
+.fp-slidesNav ul li {
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 7px;
+    position:relative;
+}
+.fp-slidesNav ul li {
+    display: inline-block;
+}
+#fp-nav ul li a,
+.fp-slidesNav ul li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+    text-decoration: none;
+}
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span{
+    height: 12px;
+    width: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 100%;
+ }
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    height: 6px;
+    width: 6px;
+    border: 0;
+    background: #bbb;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span{
+    width: 10px;
+    height: 10px;
+    margin: -5px 0px 0px -5px;
+}
+#fp-nav ul li .fp-tooltip {
+    position: absolute;
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+}
+#fp-nav ul li:hover .fp-tooltip,
+#fp-nav.fp-show-active a.active + .fp-tooltip {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
+}
+#fp-nav ul li .fp-tooltip.right {
+    right: 20px;
+}
+#fp-nav ul li .fp-tooltip.left {
+    left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ovtext{
+display: felx;
+    text-align: center;
+     position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+        font-family : 'Open Sans', sans-serif;
+font-size : 30px;
+  background-color: rgba(0,0,0,1); /*dim the background*/
+color : #fff;
+    z-index : 100;
+    font-weight: 300;
+    
+}
+
+#mainbox{
+    background-color : #fff;
+    display : flex;
+    flex-direction : column;
+    height : 100%;
+    font-size : 40px;
+    font-family : 'Open Sans', sans-serif;
+    font-weight : 300;
+    justify-content:center;
+   
+}
+#up{
+    background-color : #fff;
+    display : flex;
+    flex-direction : row;
+    height : 50%;
+    justify-content:center;
+}
+#down{
+    background-color : #fff;
+    display : flex;
+    flex-direction : row;
+    height : 50%;
+  justify-content:center;
+}
+
+
+
+a {
+    color: black;
+    text-decoration: underline;
+}
+
+a:hover {
+    font-style : italic;
+}
+
+.m{
+    background-size:   contain;               
+    background-repeat: no-repeat;
+    background-position: center center;   
+}
+.o{
+    font-weight: 100;
+    font-size : 25px;
+    opacity:1;
+    line-height: 50px;
+    text-align: center;
+    justify-content: center;
+    color : rgba(200,200,200,0);
+    background-color : rgba(0,0,0,0.15);
+    height : 50%;
+   
+    z-index: 10;
+    -moz-transition: opacity .05s ease-in-out;
+   -webkit-transition: opacity .05s ease-in-out;
+}
+
+#m1{
+    background-size:   cover;               
+    width : 30%;
+    background-image : url("http://goo.gl/pSdtsx");
+    position : relative;
+}
+
+#o1{
+    width : 30%;
+     position : absolute;
+    top:0;
+    left:0;
+ 
+}
+
+#o1:hover{
+     -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+ 
+    opacity :0;   
+}
+
+#m2{
+ width : 25%;
+    background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/2_Seize_landingpage_zpsfeb7500c.jpg");
+    position : relative;
+
+}
+
+#o2{
+    width : 25%;
+     position : absolute;
+    top:0;
+    left:30%;
+ 
+}
+
+#o2:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+#m3{
+     width : 20%;
+        background-size:   cover;               
+    background-position: top;   
+
+    background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/DSC__0020_zpsuqtppsau.jpg");
+position : relative;
+}
+
+#o3{
+    width : 20%;
+     position : absolute;
+    top:0;
+    left:55%;
+ 
+}
+
+#o3:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+
+#m4{
+     width : 25%;
+    background-image : url("http://i1380.photobucket.com/albums/ah178/soyeonhwangcontact/youshareee_zpsf1o3eg2y.png");
+position : relative;
+}
+
+
+#o4{
+    width : 25%;
+     position : absolute;
+    top:0%;
+    left:75%;
+ 
+}
+
+#o4:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+
+#m5{
+    background-size:   cover;               
+    background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/thumb_zpswytta86q.png");
+    position : relative;
+    width : 35%;
+
+}
+
+#o5{
+    width : 35%;
+     position : absolute;
+    top:50%;
+    left:0%;
+ 
+}
+
+#o5:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+#m6{
+    background-color:  #f4f4f4;           
+    width : 30%;
+    background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p3_zps8a21788f.png");
+position : relative;
+
+}
+
+#o6{
+    width : 30%;
+     position : absolute;
+    top:50%;
+    left:35%;
+ 
+}
+
+#o6:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+#m7{ 
+    background-size:   cover;  
+    position : relative;
+        background-position: top;   
+    background-image: url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/rm_zps2netqnsj.jpg");
+     width : 35%;
+
+}
+
+#o7{
+    width : 35%;
+     position : absolute;
+    top:50%;
+    left:65%;
+ 
+}
+
+#o7:hover{
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+    opacity :0;
+   
+}
+
+.mimg{
+}
+
+.p_int{
+        font-family : 'Open Sans', sans-serif;
+
+font-size : 20px;
+    line-height: 1.5em;
+}
+
+.p_des{
+    display:flex;
+    flex-direction: column;
+    padding-left:150px;
+    padding-right:150px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color:#777;
+
+}
+
+.p_title{
+    widht:100%;
+    font-size : 40px;
+    text-align:left;
+    font-family : 'Open Sans', sans-serif;
+    font-weight : 500;
+}
+
+.p_subtitle{
+font-size : 20px;
+    font-weight:300;
+}
+
+.p_content{
+            font-family : 'Open Sans', sans-serif;
+    padding-left:150px;
+    padding-right:150px;
+    text-align: left;
+    font-size : 30px;
+    font-weight:300;
+    align-items: center;
+    align-content: center;
+    display : flex;
+    flex-direction:row;
+    height:60%;
+}
+
+.p_left{
+ width : 49%;
+        height:100%;
+display:flex;
+    align-items: center;
+    margin-right:50px;
+    float : left;
+                        background-size:contain;
+    background-repeat: no-repeat;
+background-position: center;
+    text-align: center;
+
+}
+.p_right{
+    color:#666;
+    line-height:1.8em;
+    display:flex;
+    align-items: center;
+    text-align: left;
+    width:49%;
+    font-size : 18px;
+    font-weight:300;
+    float :left;
+    height:100%;
+    background-size:contain;
+    background-repeat: no-repeat;
+background-position: center;
+
+}
+.p_center{
+    width:100%;
+    color:#666;
+    line-height:1.8em;
+    display:flex;
+    align-items: center;
+    text-align: left;
+    font-size : 18px;
+    font-weight:300;
+    float :left;
+    height:100%;
+    background-size:contain;
+    background-repeat: no-repeat;
+background-position: center;
+
+}
+
+#lp0 {
+    
+     background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p1_zps12baffd5.jpg");
+
+}
+
+#lp1{
+
+     background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p2_zps502d6fa8.jpg");
+
+}
+
+#lp2{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p3_zpsab09f8d1.jpg");
+}
+
+#lp3{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p4_zps897365bf.jpg");
+}
+
+#lp4{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p5_zpsd786734a.jpg");
+}
+
+#lp5{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p6_zps36e7a089.jpg");
+}
+
+#lp6{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/process_zpsxaywgk9p.jpg");
+}
+
+#seize0{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/seize_zpspa61ua5j.jpg");
+}
+
+
+#seize1{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/pro_zpsrku9yh3y.jpg");
+}
+
+#seize2{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/s1_zpsyfwzcewx.jpg");
+}
+
+
+#seize3{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/s2_zpsrhqchni4.jpg");
+}
+
+#seize4{
+background-image : url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/sp1_zpsezcx0tx5.jpg");
+}
+
+#connect0{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/DSC_0109_zpsdddgllbt.jpg");}
+
+#connect1{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/c1_zpskp4qq6wq.jpg");}
+
+#connect2{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/c2_zpsvomj5ze7.jpg");}
+
+#connect3{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/c3_zpslh4lu73e.jpg");}
+
+#connect4{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/c4_zpsuda20ozs.jpg");}
+
+#connect5{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/c5_zpsgzcsi5zp.jpg");}
+
+#ys0{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p7_zps914903d5.png");
+width : 80%;
+}
+
+#ys1{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p1_zpse8f3eadb.png");}
+
+#ys2{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p4_zpsvtj9n7m2.png");}
+
+#ys3{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p5_zps6fcdd4b8.png");}
+#ys4{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p6_zpsc850a284.png");}
+
+
+#b0{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/n5_zps6d059j5g.jpg");
+}
+
+#b1{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/Untitled-2_zpsjnkgmhcb.jpg");}
+
+#b2{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/n1_zpshi9zkigl.jpg");
+width:80%;}
+
+#b3{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/n2_zpszjbz0hmw.jpg");
+width:80%;}
+#b4{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/n3_zpsq9ieffvd.jpg");}
+
+#b5{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/n4_zpsimthcyhz.jpg");}
+
+
+
+#r0{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p3_zps8a21788f.png");
+}
+
+
+#r1{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p1_zps13fdee10.png");}
+
+#r2{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p2_zpsaef94169.png");
+}
+#r3{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p4_zps5ae74d29.png");}
+#r4{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p5_zpsad14c954.jpg");
+}
+
+#r5{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/p6_zpsb3a366b0.jpg");}
+
+#r6{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/20150416_Venture%20Ideas%202015_0146_zps3intfkyf.jpg");
+}
+
+
+#rv0{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/rm_zps2netqnsj.jpg");
+}
+
+#rv1{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/arc_zpstv8tnr8x.jpg");
+width : 70%;
+}
+
+#rv2{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/use_zps1m0jhsyx.jpg");
+}
+
+#rv3{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/ca_zpsbwzkhnho.jpg");
+}
+
+#rv4{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/idas_zpsqlia1ufd.jpg");
+}
+
+#rv5{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/story_zpszfqe02k1.jpg");
+}
+
+#rv6{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/wf_zpswr7yuedn.jpg");
+}
+
+#rv7{
+    background-image :url("http://i1368.photobucket.com/albums/ag165/Soyeon_Hwang/demo_zpsjty5yw4k.jpg");
+}
+</style>
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+   
+      <script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
+
+
+	<script type="text/javascript">
+        
+        
+        /**
+ * fullPage 2.6.2
+ * https://github.com/alvarotrigo/fullPage.js
+ * MIT licensed
+ *
+ * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
+ */
+(function($, window, document, Math, undefined) {
+    'use strict';
+
+    // keeping central set of classnames and selectors
+    var WRAPPER =               'fullpage-wrapper';
+    var WRAPPER_SEL =           '.' + WRAPPER;
+
+    // slimscroll
+    var SCROLLABLE =            'fp-scrollable';
+    var SCROLLABLE_SEL =        '.' + SCROLLABLE;
+    var SLIMSCROLL_BAR_SEL =    '.slimScrollBar';
+    var SLIMSCROLL_RAIL_SEL =   '.slimScrollRail';
+
+    // util
+    var RESPONSIVE =            'fp-responsive';
+    var NO_TRANSITION =         'fp-notransition';
+    var DESTROYED =             'fp-destroyed';
+    var VIEWING_PREFIX =        'fp-viewing';
+    var ACTIVE =                'active';
+    var ACTIVE_SEL =            '.' + ACTIVE;
+
+    // section
+    var SECTION_DEFAULT_SEL =   '.section';
+    var SECTION =               'fp-section';
+    var SECTION_SEL =           '.' + SECTION;
+    var SECTION_ACTIVE_SEL =    SECTION_SEL + ACTIVE_SEL;
+    var SECTION_FIRST_SEL =     SECTION_SEL + ':first';
+    var SECTION_LAST_SEL =      SECTION_SEL + ':last';
+    var TABLE_CELL =            'fp-tableCell';
+    var TABLE_CELL_SEL =        '.' + TABLE_CELL;
+
+    // section nav
+    var SECTION_NAV =           'fp-nav';
+    var SECTION_NAV_SEL =       '#' + SECTION_NAV;
+    var SECTION_NAV_TOOLTIP =   'fp-tooltip';
+    var SHOW_ACTIVE_TOOLTIP =   'fp-show-active';
+
+    // slide
+    var SLIDE_DEFAULT_SEL =     '.slide';
+    var SLIDE =                 'fp-slide';
+    var SLIDE_SEL =             '.' + SLIDE;
+    var SLIDE_ACTIVE_SEL =      SLIDE_SEL + ACTIVE_SEL;
+    var SLIDES_WRAPPER =        'fp-slides';
+    var SLIDES_WRAPPER_SEL =    '.' + SLIDES_WRAPPER;
+    var SLIDES_CONTAINER =      'fp-slidesContainer';
+    var SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
+    var TABLE =                 'fp-table';
+
+    // slide nav
+    var SLIDES_NAV =            'fp-slidesNav';
+    var SLIDES_NAV_SEL =        '.' + SLIDES_NAV;
+    var SLIDES_NAV_LINK_SEL =   SLIDES_NAV_SEL + ' a';
+    var SLIDES_ARROW =          'fp-controlArrow';
+    var SLIDES_ARROW_SEL =      '.' + SLIDES_ARROW;
+    var SLIDES_PREV =           'fp-prev';
+    var SLIDES_PREV_SEL =       '.' + SLIDES_PREV;
+    var SLIDES_ARROW_PREV =     SLIDES_ARROW + ' ' + SLIDES_PREV;
+    var SLIDES_ARROW_PREV_SEL = SLIDES_ARROW_SEL + SLIDES_PREV_SEL;
+    var SLIDES_NEXT =           'fp-next';
+    var SLIDES_NEXT_SEL =       '.' + SLIDES_NEXT;
+    var SLIDES_ARROW_NEXT =     SLIDES_ARROW + ' ' + SLIDES_NEXT;
+    var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
+
+    var $window = $(window);
+    var $document = $(document);
+
+    $.fn.fullpage = function(options) {
+
+        // common jQuery objects
+        var $htmlBody = $('html, body');
+        var $body = $('body');
+
+        var FP = $.fn.fullpage;
+        // Create some defaults, extending them with any options that were provided
+        options = $.extend({
+            //navigation
+            menu: false,
+            anchors:[],
+            navigation: false,
+            navigationPosition: 'right',
+            navigationTooltips: [],
+            showActiveTooltip: false,
+            slidesNavigation: false,
+            slidesNavPosition: 'bottom',
+            scrollBar: false,
+
+            //scrolling
+            css3: true,
+            scrollingSpeed: 700,
+            autoScrolling: true,
+            fitToSection: true,
+            easing: 'easeInOutCubic',
+            easingcss3: 'ease',
+            loopBottom: false,
+            loopTop: false,
+            loopHorizontal: true,
+            continuousVertical: false,
+            normalScrollElements: null,
+            scrollOverflow: false,
+            touchSensitivity: 5,
+            normalScrollElementTouchThreshold: 5,
+
+            //Accessibility
+            keyboardScrolling: true,
+            animateAnchor: true,
+            recordHistory: true,
+
+            //design
+            controlArrows: true,
+            controlArrowColor: '#fff',
+            verticalCentered: true,
+            resize: false,
+            sectionsColor : [],
+            paddingTop: 0,
+            paddingBottom: 0,
+            fixedElements: null,
+            responsive: 0,
+
+            //Custom selectors
+            sectionSelector: SECTION_DEFAULT_SEL,
+            slideSelector: SLIDE_DEFAULT_SEL,
+
+
+            //events
+            afterLoad: null,
+            onLeave: null,
+            afterRender: null,
+            afterResize: null,
+            afterReBuild: null,
+            afterSlideLoad: null,
+            onSlideLeave: null
+        }, options);
+
+        displayWarnings();
+
+
+        //easeInOutCubic animation included in the plugin
+        $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
+
+        //TO BE REMOVED in future versions. Maintained temporaly for backwards compatibility.
+        $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
+
+        FP.setAutoScrolling = function(value, type){
+            setVariableState('autoScrolling', value, type);
+
+            var element = $(SECTION_ACTIVE_SEL);
+
+            if(options.autoScrolling && !options.scrollBar){
+                $htmlBody.css({
+                    'overflow' : 'hidden',
+                    'height' : '100%'
+                });
+
+                FP.setRecordHistory(options.recordHistory, 'internal');
+
+                //for IE touch devices
+                container.css({
+                    '-ms-touch-action': 'none',
+                    'touch-action': 'none'
+                });
+
+                if(element.length){
+                    //moving the container up
+                    silentScroll(element.position().top);
+                }
+
+            }else{
+                $htmlBody.css({
+                    'overflow' : 'visible',
+                    'height' : 'initial'
+                });
+
+                FP.setRecordHistory(false, 'internal');
+
+                //for IE touch devices
+                container.css({
+                    '-ms-touch-action': '',
+                    'touch-action': ''
+                });
+
+                silentScroll(0);
+
+                //scrolling the page to the section with no animation
+                if (element.length) {
+                    $htmlBody.scrollTop(element.position().top);
+                }
+            }
+
+        };
+
+        /**
+        * Defines wheter to record the history for each hash change in the URL.
+        */
+        FP.setRecordHistory = function(value, type){
+            setVariableState('recordHistory', value, type);
+        };
+
+        /**
+        * Defines the scrolling speed
+        */
+        FP.setScrollingSpeed = function(value, type){
+            setVariableState('scrollingSpeed', value, type);
+        };
+
+        /**
+        * Sets fitToSection
+        */
+        FP.setFitToSection = function(value, type){
+            setVariableState('fitToSection', value, type);
+        };
+
+        /**
+        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
+        */
+        FP.setMouseWheelScrolling = function (value){
+            if(value){
+                addMouseWheelHandler();
+            }else{
+                removeMouseWheelHandler();
+            }
+        };
+
+        /**
+        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
+        * Optionally a second parameter can be used to specify the direction for which the action will be applied.
+        *
+        * @param directions string containing the direction or directions separated by comma.
+        */
+        FP.setAllowScrolling = function (value, directions){
+            if(typeof directions != 'undefined'){
+                directions = directions.replace(' ', '').split(',');
+                $.each(directions, function (index, direction){
+                    setIsScrollable(value, direction);
+                });
+            }
+            else if(value){
+                FP.setMouseWheelScrolling(true);
+                addTouchHandler();
+            }else{
+                FP.setMouseWheelScrolling(false);
+                removeTouchHandler();
+            }
+        };
+
+        /**
+        * Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
+        */
+        FP.setKeyboardScrolling = function (value){
+            options.keyboardScrolling = value;
+        };
+
+        FP.moveSectionUp = function(){
+            var prev = $(SECTION_ACTIVE_SEL).prev(SECTION_SEL);
+
+            //looping to the bottom if there's no more sections above
+            if (!prev.length && (options.loopTop || options.continuousVertical)) {
+                prev = $(SECTION_SEL).last();
+            }
+
+            if (prev.length) {
+                scrollPage(prev, null, true);
+            }
+        };
+
+        FP.moveSectionDown = function (){
+            var next = $(SECTION_ACTIVE_SEL).next(SECTION_SEL);
+
+            //looping to the top if there's no more sections below
+            if(!next.length &&
+                (options.loopBottom || options.continuousVertical)){
+                next = $(SECTION_SEL).first();
+            }
+
+            if(next.length){
+                scrollPage(next, null, false);
+            }
+        };
+
+        FP.moveTo = function (section, slide){
+            var destiny = '';
+
+            if(isNaN(section)){
+                destiny = $('[data-anchor="'+section+'"]');
+            }else{
+                destiny = $(SECTION_SEL).eq( (section -1) );
+            }
+
+            if (typeof slide !== 'undefined'){
+                scrollPageAndSlide(section, slide);
+            }else if(destiny.length > 0){
+                scrollPage(destiny);
+            }
+        };
+
+        FP.moveSlideRight = function(){
+            moveSlide('next');
+        };
+
+        FP.moveSlideLeft = function(){
+            moveSlide('prev');
+        };
+
+        /**
+         * When resizing is finished, we adjust the slides sizes and positions
+         */
+        FP.reBuild = function(resizing){
+            if(container.hasClass(DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
+
+            isResizing = true;
+
+            var windowsWidth = $window.width();
+            windowsHeight = $window.height();  //updating global var
+
+            //text and images resizing
+            if (options.resize) {
+                resizeMe(windowsHeight, windowsWidth);
+            }
+
+            $(SECTION_SEL).each(function(){
+                var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
+                var slides = $(this).find(SLIDE_SEL);
+
+                //adjusting the height of the table-cell for IE and Firefox
+                if(options.verticalCentered){
+                    $(this).find(TABLE_CELL_SEL).css('height', getTableHeight($(this)) + 'px');
+                }
+
+                $(this).css('height', windowsHeight + 'px');
+
+                //resizing the scrolling divs
+                if(options.scrollOverflow){
+                    if(slides.length){
+                        slides.each(function(){
+                            createSlimScrolling($(this));
+                        });
+                    }else{
+                        createSlimScrolling($(this));
+                    }
+                }
+
+                //adjusting the position fo the FULL WIDTH slides...
+                if (slides.length) {
+                    landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
+                }
+            });
+
+            var activeSection = $(SECTION_ACTIVE_SEL);
+
+            //isn't it the first section?
+            if(activeSection.index(SECTION_SEL)){
+                //adjusting the position for the current section
+                scrollPage(activeSection);
+            }
+
+            isResizing = false;
+            $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
+            $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
+        };
+
+        //flag to avoid very fast sliding for landscape sliders
+        var slideMoving = false;
+
+        var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
+        var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
+        var container = $(this);
+        var windowsHeight = $window.height();
+        var isResizing = false;
+        var lastScrolledDestiny;
+        var lastScrolledSlide;
+        var canScroll = true;
+        var scrollings = [];
+        var nav;
+        var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
+        var originals = $.extend(true, {}, options); //deep copy
+
+        FP.setAllowScrolling(true);
+        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+
+        //if css3 is not supported, it will use jQuery animations
+        if(options.css3){
+            options.css3 = support3d();
+        }
+
+        if($(this).length){
+            container.css({
+                'height': '100%',
+                'position': 'relative'
+            });
+
+            //adding a class to recognize the container internally in the code
+            container.addClass(WRAPPER);
+        }
+
+        //trying to use fullpage without a selector?
+        else{
+            showError('error', 'Error! Fullpage.js needs to be initialized with a selector. For example: $(\'#myContainer\').fullpage();');
+        }
+
+        //adding internal class names to void problem with common ones
+        $(options.sectionSelector).each(function(){
+            $(this).addClass(SECTION);
+        });
+        $(options.slideSelector).each(function(){
+            $(this).addClass(SLIDE);
+        });
+
+        //creating the navigation dots
+        if (options.navigation) {
+            addVerticalNavigation();
+        }
+
+        $(SECTION_SEL).each(function(index){
+            var that = $(this);
+            var slides = $(this).find(SLIDE_SEL);
+            var numSlides = slides.length;
+
+            //if no active section is defined, the 1st one will be the default one
+            if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
+                $(this).addClass(ACTIVE);
+            }
+
+            $(this).css('height', windowsHeight + 'px');
+
+            if(options.paddingTop){
+                $(this).css('padding-top', options.paddingTop);
+            }
+
+            if(options.paddingBottom){
+                $(this).css('padding-bottom', options.paddingBottom);
+            }
+
+            if (typeof options.sectionsColor[index] !==  'undefined') {
+                $(this).css('background-color', options.sectionsColor[index]);
+            }
+
+            if (typeof options.anchors[index] !== 'undefined') {
+                $(this).attr('data-anchor', options.anchors[index]);
+
+                //activating the menu / nav element on load
+                if($(this).hasClass(ACTIVE)){
+                    activateMenuAndNav(options.anchors[index], index);
+                }
+            }
+
+            // if there's any slide
+            if (numSlides > 1) {
+                var sliderWidth = numSlides * 100;
+                var slideWidth = 100 / numSlides;
+
+                slides.wrapAll('<div class="' + SLIDES_CONTAINER + '" />');
+                slides.parent().wrap('<div class="' + SLIDES_WRAPPER + '" />');
+
+                $(this).find(SLIDES_CONTAINER_SEL).css('width', sliderWidth + '%');
+
+                if(options.controlArrows){
+                    createSlideArrows($(this));
+                }
+
+                if(options.slidesNavigation){
+                    addSlidesNavigation($(this), numSlides);
+                }
+
+                slides.each(function(index) {
+                    $(this).css('width', slideWidth + '%');
+
+                    if(options.verticalCentered){
+                        addTableClass($(this));
+                    }
+                });
+
+                var startingSlide = that.find(SLIDE_ACTIVE_SEL);
+
+                //if the slide won#t be an starting point, the default will be the first one
+                if(!startingSlide.length){
+                    slides.eq(0).addClass(ACTIVE);
+                }
+
+                //is there a starting point for a non-starting section?
+                else{
+                    silentLandscapeScroll(startingSlide);
+                }
+
+            }else{
+                if(options.verticalCentered){
+                    addTableClass($(this));
+                }
+            }
+
+        }).promise().done(function(){
+            FP.setAutoScrolling(options.autoScrolling, 'internal');
+
+            //the starting point is a slide?
+            var activeSlide = $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL);
+
+            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
+            if( activeSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && activeSlide.index() !== 0))){
+                silentLandscapeScroll(activeSlide);
+            }
+
+            //fixed elements need to be moved out of the plugin container due to problems with CSS3.
+            if(options.fixedElements && options.css3){
+                $(options.fixedElements).appendTo($body);
+            }
+
+            //vertical centered of the navigation + first bullet active
+            if(options.navigation){
+                nav.css('margin-top', '-' + (nav.height()/2) + 'px');
+                nav.find('li').eq($(SECTION_ACTIVE_SEL).index(SECTION_SEL)).find('a').addClass(ACTIVE);
+            }
+
+            //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
+            if(options.menu && options.css3 && $(options.menu).closest(WRAPPER_SEL).length){
+                $(options.menu).appendTo($body);
+            }
+
+            if(options.scrollOverflow){
+                if(document.readyState === 'complete'){
+                    createSlimScrollingHandler();
+                }
+                //after DOM and images are loaded
+                $window.on('load', createSlimScrollingHandler);
+            }else{
+                $.isFunction( options.afterRender ) && options.afterRender.call(container);
+            }
+
+            responsive();
+
+            //for animateAnchor:false
+            if(!options.animateAnchor){
+                //getting the anchor link in the URL and deleting the `#`
+                var value =  window.location.hash.replace('#', '').split('/');
+                var destiny = value[0];
+
+                if(destiny.length){
+                    var section = $('[data-anchor="'+destiny+'"]');
+
+                    if(section.length){
+                        if(options.autoScrolling){
+                            silentScroll(section.position().top);
+                        }
+                        else{
+                            silentScroll(0);
+
+                            //scrolling the page to the section with no animation
+                            $htmlBody.scrollTop(section.position().top);
+                        }
+                        activateMenuAndNav(destiny, null);
+
+                        $.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(SECTION_SEL) + 1));
+
+                        //updating the active class
+                        section.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+                    }
+                }
+            }
+
+            //setting the class for the body element
+            setBodyClass();
+
+            $window.on('load', function() {
+                scrollToAnchor();
+            });
+
+        });
+
+
+        /**
+        * Creates the control arrows for the given section
+        */
+        function createSlideArrows(section){
+            section.find(SLIDES_WRAPPER_SEL).after('<div class="' + SLIDES_ARROW_PREV + '"></div><div class="' + SLIDES_ARROW_NEXT + '"></div>');
+
+            if(options.controlArrowColor!='#fff'){
+                section.find(SLIDES_ARROW_NEXT_SEL).css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+                section.find(SLIDES_ARROW_PREV_SEL).css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+            }
+
+            if(!options.loopHorizontal){
+                section.find(SLIDES_ARROW_PREV_SEL).hide();
+            }
+        }
+
+        /**
+        * Creates a vertical navigation bar.
+        */
+        function addVerticalNavigation(){
+            $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
+            nav = $(SECTION_NAV_SEL);
+
+            nav.addClass(function() {
+                return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
+            });
+
+            for (var i = 0; i < $(SECTION_SEL).length; i++) {
+                var link = '';
+                if (options.anchors.length) {
+                    link = options.anchors[i];
+                }
+
+                var li = '<li><a href="#' + link + '"><span></span></a>';
+
+                // Only add tooltip if needed (defined by user)
+                var tooltip = options.navigationTooltips[i];
+
+                if (typeof tooltip !== 'undefined' && tooltip !== '') {
+                    li += '<div class="' + SECTION_NAV_TOOLTIP + ' ' + options.navigationPosition + '">' + tooltip + '</div>';
+                }
+
+                li += '</li>';
+
+                nav.find('ul').append(li);
+            }
+        }
+
+        function createSlimScrollingHandler(){
+            $(SECTION_SEL).each(function(){
+                var slides = $(this).find(SLIDE_SEL);
+
+                if(slides.length){
+                    slides.each(function(){
+                        createSlimScrolling($(this));
+                    });
+                }else{
+                    createSlimScrolling($(this));
+                }
+
+            });
+            $.isFunction( options.afterRender ) && options.afterRender.call( this);
+        }
+
+        var scrollId;
+        var scrollId2;
+        var isScrolling = false;
+
+        //when scrolling...
+        $window.on('scroll', scrollHandler);
+
+        function scrollHandler(){
+            var currentSection;
+
+            if(!options.autoScrolling || options.scrollBar){
+                var currentScroll = $window.scrollTop();
+                var visibleSectionIndex = 0;
+                var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
+
+                //taking the section which is showing more content in the viewport
+                var sections =  document.querySelectorAll(SECTION_SEL);
+                for (var i = 0; i < sections.length; ++i) {
+                    var section = sections[i];
+
+                    var current = Math.abs(currentScroll - section.offsetTop);
+
+                    if(current < initial){
+                        visibleSectionIndex = i;
+                        initial = current;
+                    }
+                }
+
+                //geting the last one, the current one on the screen
+                currentSection = $(sections).eq(visibleSectionIndex);
+            }
+
+            if(!options.autoScrolling || options.scrollBar){
+                //executing only once the first time we reach the section
+                if(!currentSection.hasClass(ACTIVE)){
+                    isScrolling = true;
+                    var leavingSection = $(SECTION_ACTIVE_SEL);
+                    var leavingSectionIndex = leavingSection.index(SECTION_SEL) + 1;
+                    var yMovement = getYmovement(currentSection);
+                    var anchorLink  = currentSection.data('anchor');
+                    var sectionIndex = currentSection.index(SECTION_SEL) + 1;
+                    var activeSlide = currentSection.find(SLIDE_ACTIVE_SEL);
+
+                    if(activeSlide.length){
+                        var slideAnchorLink = activeSlide.data('anchor');
+                        var slideIndex = activeSlide.index();
+                    }
+
+                    if(canScroll){
+                        currentSection.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+
+                        $.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
+
+                        $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
+
+                        activateMenuAndNav(anchorLink, sectionIndex - 1);
+
+                        if(options.anchors.length){
+                            //needed to enter in hashChange event when using the menu with anchor links
+                            lastScrolledDestiny = anchorLink;
+
+                            setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
+                        }
+                    }
+
+                    //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+                    clearTimeout(scrollId);
+                    scrollId = setTimeout(function(){
+                        isScrolling = false;
+                    }, 100);
+                }
+
+                if(options.fitToSection){
+                    //for the auto adjust of the viewport to fit a whole section
+                    clearTimeout(scrollId2);
+
+                    scrollId2 = setTimeout(function(){
+                        if(canScroll){
+                            //allows to scroll to an active section and
+                            //if the section is already active, we prevent firing callbacks
+                            if($(SECTION_ACTIVE_SEL).is(currentSection)){
+                                isResizing = true;
+                            }
+                            scrollPage(currentSection);
+                            isResizing = false;
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+
+        /**
+        * Determines whether the active section or slide is scrollable through and scrolling bar
+        */
+        function isScrollable(activeSection){
+            //if there are landscape slides, we check if the scrolling bar is in the current one or not
+            if(activeSection.find(SLIDES_WRAPPER_SEL).length){
+                return activeSection.find(SLIDE_ACTIVE_SEL).find(SCROLLABLE_SEL);
+            }
+
+            return activeSection.find(SCROLLABLE_SEL);
+        }
+
+        /**
+        * Determines the way of scrolling up or down:
+        * by 'automatically' scrolling a section or by using the default and normal scrolling.
+        */
+        function scrolling(type, scrollable){
+            if (!isScrollAllowed[type]){
+                return;
+            }
+            var check, scrollSection;
+
+            if(type == 'down'){
+                check = 'bottom';
+                scrollSection = FP.moveSectionDown;
+            }else{
+                check = 'top';
+                scrollSection = FP.moveSectionUp;
+            }
+
+            if(scrollable.length > 0 ){
+                //is the scrollbar at the start/end of the scroll?
+                if(isScrolled(check, scrollable)){
+                    scrollSection();
+                }else{
+                    return true;
+                }
+            }else{
+                // moved up/down
+                scrollSection();
+            }
+        }
+
+
+        var touchStartY = 0;
+        var touchStartX = 0;
+        var touchEndY = 0;
+        var touchEndX = 0;
+
+        /* Detecting touch events
+
+        * As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
+        * This way, the touchstart and the touch moves shows an small difference between them which is the
+        * used one to determine the direction.
+        */
+        function touchMoveHandler(event){
+            var e = event.originalEvent;
+
+            // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
+            if (!checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
+
+                if(options.autoScrolling){
+                    //preventing the easing on iOS devices
+                    event.preventDefault();
+                }
+
+                var activeSection = $(SECTION_ACTIVE_SEL);
+                var scrollable = isScrollable(activeSection);
+
+                if (canScroll && !slideMoving) { //if theres any #
+                    var touchEvents = getEventsPage(e);
+
+                    touchEndY = touchEvents.y;
+                    touchEndX = touchEvents.x;
+
+                    //if movement in the X axys is greater than in the Y and the currect section has slides...
+                    if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+
+                        //is the movement greater than the minimum resistance to scroll?
+                        if (Math.abs(touchStartX - touchEndX) > ($window.width() / 100 * options.touchSensitivity)) {
+                            if (touchStartX > touchEndX) {
+                                if(isScrollAllowed.right){
+                                    FP.moveSlideRight(); //next
+                                }
+                            } else {
+                                if(isScrollAllowed.left){
+                                    FP.moveSlideLeft(); //prev
+                                }
+                            }
+                        }
+                    }
+
+                    //vertical scrolling (only when autoScrolling is enabled)
+                    else if(options.autoScrolling){
+
+                        //is the movement greater than the minimum resistance to scroll?
+                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                            if (touchStartY > touchEndY) {
+                                scrolling('down', scrollable);
+                            } else if (touchEndY > touchStartY) {
+                                scrolling('up', scrollable);
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+        /**
+         * recursive function to loop up the parent nodes to check if one of them exists in options.normalScrollElements
+         * Currently works well for iOS - Android might need some testing
+         * @param  {Element} el  target element / jquery selector (in subsequent nodes)
+         * @param  {int}     hop current hop compared to options.normalScrollElementTouchThreshold
+         * @return {boolean} true if there is a match to options.normalScrollElements
+         */
+        function checkParentForNormalScrollElement (el, hop) {
+            hop = hop || 0;
+            var parent = $(el).parent();
+
+            if (hop < options.normalScrollElementTouchThreshold &&
+                parent.is(options.normalScrollElements) ) {
+                return true;
+            } else if (hop == options.normalScrollElementTouchThreshold) {
+                return false;
+            } else {
+                return checkParentForNormalScrollElement(parent, ++hop);
+            }
+        }
+
+        /**
+        * As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+        * this way we make sure that is really a touch event what IE is detecting.
+        */
+        function isReallyTouch(e){
+            //if is not IE   ||  IE is detecting `touch` or `pen`
+            return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+        }
+
+        function touchStartHandler(event){
+            var e = event.originalEvent;
+
+            //stopping the auto scroll to adjust to a section
+            if(options.fitToSection){
+                $htmlBody.stop();
+            }
+
+            if(isReallyTouch(e)){
+                var touchEvents = getEventsPage(e);
+                touchStartY = touchEvents.y;
+                touchStartX = touchEvents.x;
+            }
+        }
+
+        function getAverage(elements, number){
+            var sum = 0;
+
+            //taking `number` elements from the end to make the average, if there are not enought, 1
+            var lastElements = elements.slice(Math.max(elements.length - number, 1));
+
+            for(var i = 0; i < lastElements.length; i++){
+                sum = sum + lastElements[i];
+            }
+
+            return Math.ceil(sum/number);
+        }
+
+        /**
+         * Detecting mousewheel scrolling
+         *
+         * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
+         * http://www.sitepoint.com/html5-javascript-mouse-wheel/
+         */
+        var prevTime = new Date().getTime();
+
+        function MouseWheelHandler(e) {
+            var curTime = new Date().getTime();
+
+            if(options.autoScrolling){
+                // cross-browser wheel delta
+                e = window.event || e;
+                var value = e.wheelDelta || -e.deltaY || -e.detail;
+                var delta = Math.max(-1, Math.min(1, value));
+
+                //Limiting the array to 150 (lets not waist memory!)
+                if(scrollings.length > 149){
+                    scrollings.shift();
+                }
+
+                //keeping record of the previous scrollings
+                scrollings.push(Math.abs(value));
+
+                //preventing to scroll the site on mouse wheel when scrollbar is present
+                if(options.scrollBar){
+                    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                }
+
+                var activeSection = $(SECTION_ACTIVE_SEL);
+                var scrollable = isScrollable(activeSection);
+
+                //time difference between the last scroll and the current one
+                var timeDiff = curTime-prevTime;
+                prevTime = curTime;
+
+                //haven't they scrolled in a while?
+                //(enough to be consider a different scrolling action to scroll another section)
+                if(timeDiff > 200){
+                    //emptying the array, we dont care about old scrollings for our averages
+                    scrollings = [];
+                }
+
+                if(canScroll){
+                    var averageEnd = getAverage(scrollings, 10);
+                    var averageMiddle = getAverage(scrollings, 70);
+                    var isAccelerating = averageEnd >= averageMiddle;
+
+                    //to avoid double swipes...
+                    if(isAccelerating){
+                        //scrolling down?
+                        if (delta < 0) {
+                            scrolling('down', scrollable);
+
+                        //scrolling up?
+                        }else {
+                            scrolling('up', scrollable);
+                        }
+                    }
+                }
+
+                return false;
+            }
+
+            if(options.fitToSection){
+                //stopping the auto scroll to adjust to a section
+                $htmlBody.stop();
+            }
+        }
+
+        function moveSlide(direction){
+            var activeSection = $(SECTION_ACTIVE_SEL);
+            var slides = activeSection.find(SLIDES_WRAPPER_SEL);
+
+            // more than one slide needed and nothing should be sliding
+            if (!slides.length || slideMoving) {
+                return;
+            }
+
+            var currentSlide = slides.find(SLIDE_ACTIVE_SEL);
+            var destiny = null;
+
+            if(direction === 'prev'){
+                destiny = currentSlide.prev(SLIDE_SEL);
+            }else{
+                destiny = currentSlide.next(SLIDE_SEL);
+            }
+
+            //isn't there a next slide in the secuence?
+            if(!destiny.length){
+                //respect loopHorizontal settin
+                if (!options.loopHorizontal) return;
+
+                if(direction === 'prev'){
+                    destiny = currentSlide.siblings(':last');
+                }else{
+                    destiny = currentSlide.siblings(':first');
+                }
+            }
+
+            slideMoving = true;
+
+            landscapeScroll(slides, destiny);
+        }
+
+        /**
+        * Maintains the active slides in the viewport
+        * (Because he `scroll` animation might get lost with some actions, such as when using continuousVertical)
+        */
+        function keepSlidesPosition(){
+            $(SLIDE_ACTIVE_SEL).each(function(){
+                silentLandscapeScroll($(this));
+            });
+        }
+
+        /**
+        * Scrolls the site to the given element and scrolls to the slide if a callback is given.
+        */
+        function scrollPage(element, callback, isMovementUp){
+            var dest = element.position();
+            if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
+
+            //local variables
+            var v = {
+                element: element,
+                callback: callback,
+                isMovementUp: isMovementUp,
+                dest: dest,
+                dtop: dest.top,
+                yMovement: getYmovement(element),
+                anchorLink: element.data('anchor'),
+                sectionIndex: element.index(SECTION_SEL),
+                activeSlide: element.find(SLIDE_ACTIVE_SEL),
+                activeSection: $(SECTION_ACTIVE_SEL),
+                leavingSection: $(SECTION_ACTIVE_SEL).index(SECTION_SEL) + 1,
+
+                //caching the value of isResizing at the momment the function is called
+                //because it will be checked later inside a setTimeout and the value might change
+                localIsResizing: isResizing
+            };
+
+            //quiting when destination scroll is the same as the current one
+            if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
+
+            if(v.activeSlide.length){
+                var slideAnchorLink = v.activeSlide.data('anchor');
+                var slideIndex = v.activeSlide.index();
+            }
+
+            // If continuousVertical && we need to wrap around
+            if (options.autoScrolling && options.continuousVertical && typeof (v.isMovementUp) !== "undefined" &&
+                ((!v.isMovementUp && v.yMovement == 'up') || // Intending to scroll down but about to go up or
+                (v.isMovementUp && v.yMovement == 'down'))) { // intending to scroll up but about to go down
+
+                v = createInfiniteSections(v);
+            }
+
+            element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+
+            //preventing from activating the MouseWheelHandler event
+            //more than once if the page is scrolling
+            canScroll = false;
+
+            setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
+
+            //callback (onLeave) if the site is not just resizing and readjusting the slides
+            $.isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
+
+            performMovement(v);
+
+            //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+            lastScrolledDestiny = v.anchorLink;
+
+            //avoid firing it twice (as it does also on scroll)
+            activateMenuAndNav(v.anchorLink, v.sectionIndex);
+        }
+
+        /**
+        * Performs the movement (by CSS3 or by jQuery)
+        */
+        function performMovement(v){
+            // using CSS3 translate functionality
+            if (options.css3 && options.autoScrolling && !options.scrollBar) {
+
+                var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
+                transformContainer(translate3d, true);
+
+                setTimeout(function () {
+                    afterSectionLoads(v);
+                }, options.scrollingSpeed);
+            }
+
+            // using jQuery animate
+            else{
+                var scrollSettings = getScrollSettings(v);
+
+                $(scrollSettings.element).animate(
+                    scrollSettings.options,
+                options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
+                    afterSectionLoads(v);
+                });
+            }
+        }
+
+        /**
+        * Gets the scrolling settings depending on the plugin autoScrolling option
+        */
+        function getScrollSettings(v){
+            var scroll = {};
+
+            if(options.autoScrolling && !options.scrollBar){
+                scroll.options = { 'top': -v.dtop};
+                scroll.element = WRAPPER_SEL;
+            }else{
+                scroll.options = { 'scrollTop': v.dtop};
+                scroll.element = 'html, body';
+            }
+
+            return scroll;
+        }
+
+        /**
+        * Adds sections before or after the current one to create the infinite effect.
+        */
+        function createInfiniteSections(v){
+            // Scrolling down
+            if (!v.isMovementUp) {
+                // Move all previous sections to after the active section
+                $(SECTION_ACTIVE_SEL).after(v.activeSection.prevAll(SECTION_SEL).get().reverse());
+            }
+            else { // Scrolling up
+                // Move all next sections to before the active section
+                $(SECTION_ACTIVE_SEL).before(v.activeSection.nextAll(SECTION_SEL));
+            }
+
+            // Maintain the displayed position (now that we changed the element order)
+            silentScroll($(SECTION_ACTIVE_SEL).position().top);
+
+            // Maintain the active slides visible in the viewport
+            keepSlidesPosition();
+
+            // save for later the elements that still need to be reordered
+            v.wrapAroundElements = v.activeSection;
+
+            // Recalculate animation variables
+            v.dest = v.element.position();
+            v.dtop = v.dest.top;
+            v.yMovement = getYmovement(v.element);
+
+            return v;
+        }
+
+        /**
+        * Fix section order after continuousVertical changes have been animated
+        */
+        function continuousVerticalFixSectionOrder (v) {
+            // If continuousVertical is in effect (and autoScrolling would also be in effect then),
+            // finish moving the elements around so the direct navigation will function more simply
+            if (!v.wrapAroundElements || !v.wrapAroundElements.length) {
+                return;
+            }
+
+            if (v.isMovementUp) {
+                $(SECTION_FIRST_SEL).before(v.wrapAroundElements);
+            }
+            else {
+                $(SECTION_LAST_SEL).after(v.wrapAroundElements);
+            }
+
+            silentScroll($(SECTION_ACTIVE_SEL).position().top);
+
+            // Maintain the active slides visible in the viewport
+            keepSlidesPosition();
+        }
+
+
+        /**
+        * Actions to do once the section is loaded
+        */
+        function afterSectionLoads (v){
+            continuousVerticalFixSectionOrder(v);
+            //callback (afterLoad) if the site is not just resizing and readjusting the slides
+            $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+            canScroll = true;
+
+            setTimeout(function () {
+                $.isFunction(v.callback) && v.callback.call(this);
+            }, 600);
+        }
+
+        /**
+        * Scrolls to the anchor in the URL when loading the site
+        */
+        function scrollToAnchor(){
+            //getting the anchor link in the URL and deleting the `#`
+            var value =  window.location.hash.replace('#', '').split('/');
+            var section = value[0];
+            var slide = value[1];
+
+            if(section){  //if theres any #
+                scrollPageAndSlide(section, slide);
+            }
+        }
+
+        //detecting any change on the URL to scroll to the given anchor link
+        //(a way to detect back history button as we play with the hashes on the URL)
+        $window.on('hashchange', hashChangeHandler);
+
+        function hashChangeHandler(){
+            if(!isScrolling){
+                var value =  window.location.hash.replace('#', '').split('/');
+                var section = value[0];
+                var slide = value[1];
+
+                if(section.length){
+                    //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
+                    var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
+                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
+
+                    /*in order to call scrollpage() only once for each destination at a time
+                    It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
+                    event is fired on every scroll too.*/
+                    if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
+                        scrollPageAndSlide(section, slide);
+                    }
+                }
+            }
+        }
+
+        /**
+         * Sliding with arrow keys, both, vertical and horizontal
+         */
+        $document.keydown(keydownHandler);
+
+        var keydownId;
+        function keydownHandler(e) {
+            clearTimeout(keydownId);
+
+            var activeElement = $(document.activeElement);
+
+            if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
+                options.keyboardScrolling && options.autoScrolling){
+                var keyCode = e.which;
+
+                //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
+                var keyControls = [40, 38, 32, 33, 34];
+                if($.inArray(keyCode, keyControls) > -1){
+                    e.preventDefault();
+                }
+
+                keydownId = setTimeout(function(){
+                    onkeydown(e);
+                },150);
+            }
+        }
+
+        function onkeydown(e){
+            var shiftPressed = e.shiftKey;
+
+            switch (e.which) {
+                //up
+                case 38:
+                case 33:
+                    FP.moveSectionUp();
+                    break;
+
+                //down
+                case 32: //spacebar
+                    if(shiftPressed){
+                        FP.moveSectionUp();
+                        break;
+                    }
+                case 40:
+                case 34:
+                    FP.moveSectionDown();
+                    break;
+
+                //Home
+                case 36:
+                    FP.moveTo(1);
+                    break;
+
+                //End
+                case 35:
+                    FP.moveTo( $(SECTION_SEL).length );
+                    break;
+
+                //left
+                case 37:
+                    FP.moveSlideLeft();
+                    break;
+
+                //right
+                case 39:
+                    FP.moveSlideRight();
+                    break;
+
+                default:
+                    return; // exit this handler for other keys
+            }
+        }
+
+        //binding the mousemove when the mouse's middle button is released
+        container.mousedown(function(e){
+            //middle button
+            if (e.which == 2){
+                oldPageY = e.pageY;
+                container.on('mousemove', mouseMoveHandler);
+            }
+        });
+
+        //unbinding the mousemove when the mouse's middle button is released
+        container.mouseup(function(e){
+            //middle button
+            if (e.which == 2){
+                container.off('mousemove');
+            }
+        });
+
+        /**
+        * Detecting the direction of the mouse movement.
+        * Used only for the middle button of the mouse.
+        */
+        var oldPageY = 0;
+        function mouseMoveHandler(e){
+            // moving up
+            if(canScroll){
+                if (e.pageY < oldPageY){
+                    FP.moveSectionUp();
+
+                // moving downw
+                }else if(e.pageY > oldPageY){
+                    FP.moveSectionDown();
+                }
+            }
+            oldPageY = e.pageY;
+        }
+
+        /**
+        * Scrolls to the section when clicking the navigation bullet
+        */
+        $document.on('click touchstart', SECTION_NAV_SEL + ' a', function(e){
+            e.preventDefault();
+            var index = $(this).parent().index();
+            scrollPage($(SECTION_SEL).eq(index));
+        });
+
+        /**
+        * Scrolls the slider to the given slide destination for the given section
+        */
+        $document.on('click touchstart', SLIDES_NAV_LINK_SEL, function(e){
+            e.preventDefault();
+            var slides = $(this).closest(SECTION_SEL).find(SLIDES_WRAPPER_SEL);
+            var destiny = slides.find(SLIDE_SEL).eq($(this).closest('li').index());
+
+            landscapeScroll(slides, destiny);
+        });
+
+        if(options.normalScrollElements){
+            $document.on('mouseenter', options.normalScrollElements, function () {
+                FP.setMouseWheelScrolling(false);
+            });
+
+            $document.on('mouseleave', options.normalScrollElements, function(){
+                FP.setMouseWheelScrolling(true);
+            });
+        }
+
+        /**
+         * Scrolling horizontally when clicking on the slider controls.
+         */
+        $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, function() {
+            if ($(this).hasClass(SLIDES_PREV)) {
+                FP.moveSlideLeft();
+            } else {
+                FP.moveSlideRight();
+            }
+        });
+
+        /**
+        * Scrolls horizontal sliders.
+        */
+        function landscapeScroll(slides, destiny){
+            var destinyPos = destiny.position();
+            var slideIndex = destiny.index();
+            var section = slides.closest(SECTION_SEL);
+            var sectionIndex = section.index(SECTION_SEL);
+            var anchorLink = section.data('anchor');
+            var slidesNav = section.find(SLIDES_NAV_SEL);
+            var slideAnchor = getSlideAnchor(destiny);
+
+            //caching the value of isResizing at the momment the function is called
+            //because it will be checked later inside a setTimeout and the value might change
+            var localIsResizing = isResizing;
+
+            if(options.onSlideLeave){
+                var prevSlide = section.find(SLIDE_ACTIVE_SEL);
+                var prevSlideIndex = prevSlide.index();
+                var xMovement = getXmovement(prevSlideIndex, slideIndex);
+
+                //if the site is not just resizing and readjusting the slides
+                if(!localIsResizing && xMovement!=='none'){
+                    $.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( prevSlide, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
+                }
+            }
+
+            destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+
+            if(!options.loopHorizontal && options.controlArrows){
+                //hidding it for the fist slide, showing for the rest
+                section.find(SLIDES_ARROW_PREV_SEL).toggle(slideIndex!==0);
+
+                //hidding it for the last slide, showing for the rest
+                section.find(SLIDES_ARROW_NEXT_SEL).toggle(!destiny.is(':last-child'));
+            }
+
+            //only changing the URL if the slides are in the current section (not for resize re-adjusting)
+            if(section.hasClass(ACTIVE)){
+                setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
+            }
+
+            var afterSlideLoads = function(){
+                //if the site is not just resizing and readjusting the slides
+                if(!localIsResizing){
+                    $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+                }
+                //letting them slide again
+                slideMoving = false;
+            };
+
+            if(options.css3){
+                var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
+
+                addAnimation(slides.find(SLIDES_CONTAINER_SEL), options.scrollingSpeed>0).css(getTransforms(translate3d));
+
+                setTimeout(function(){
+                    afterSlideLoads();
+                }, options.scrollingSpeed, options.easing);
+            }else{
+                slides.animate({
+                    scrollLeft : destinyPos.left
+                }, options.scrollingSpeed, options.easing, function() {
+
+                    afterSlideLoads();
+                });
+            }
+
+            slidesNav.find(ACTIVE_SEL).removeClass(ACTIVE);
+            slidesNav.find('li').eq(slideIndex).find('a').addClass(ACTIVE);
+        }
+
+        //when resizing the site, we adjust the heights of the sections, slimScroll...
+        $window.resize(resizeHandler);
+
+        var previousHeight = windowsHeight;
+        var resizeId;
+        function resizeHandler(){
+            //checking if it needs to get responsive
+            responsive();
+
+            // rebuild immediately on touch devices
+            if (isTouchDevice) {
+                var activeElement = $(document.activeElement);
+
+                //if the keyboard is NOT visible
+                if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
+                    var currentHeight = $window.height();
+
+                    //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
+                    if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
+                        FP.reBuild(true);
+                        previousHeight = currentHeight;
+                    }
+                }
+            }else{
+                //in order to call the functions only when the resize is finished
+                //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
+                clearTimeout(resizeId);
+
+                resizeId = setTimeout(function(){
+                    FP.reBuild(true);
+                }, 500);
+            }
+        }
+
+        /**
+        * Checks if the site needs to get responsive and disables autoScrolling if so.
+        * A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS.
+        */
+        function responsive(){
+            if(options.responsive){
+                var isResponsive = container.hasClass(RESPONSIVE);
+                if ($window.width() < options.responsive ){
+                    if(!isResponsive){
+                        FP.setAutoScrolling(false, 'internal');
+                        FP.setFitToSection(false, 'internal');
+                        $(SECTION_NAV_SEL).hide();
+                        container.addClass(RESPONSIVE);
+                    }
+                }else if(isResponsive){
+                    FP.setAutoScrolling(originals.autoScrolling, 'internal');
+                    FP.setFitToSection(originals.autoScrolling, 'internal');
+                    $(SECTION_NAV_SEL).show();
+                    container.removeClass(RESPONSIVE);
+                }
+            }
+        }
+
+        /**
+        * Adds transition animations for the given element
+        */
+        function addAnimation(element){
+            var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
+
+            element.removeClass(NO_TRANSITION);
+            return element.css({
+                '-webkit-transition': transition,
+                'transition': transition
+            });
+        }
+
+        /**
+        * Remove transition animations for the given element
+        */
+        function removeAnimation(element){
+            return element.addClass(NO_TRANSITION);
+        }
+
+        /**
+         * Resizing of the font size depending on the window size as well as some of the images on the site.
+         */
+        function resizeMe(displayHeight, displayWidth) {
+            //Standard dimensions, for which the body font size is correct
+            var preferredHeight = 825;
+            var preferredWidth = 900;
+
+            if (displayHeight < preferredHeight || displayWidth < preferredWidth) {
+                var heightPercentage = (displayHeight * 100) / preferredHeight;
+                var widthPercentage = (displayWidth * 100) / preferredWidth;
+                var percentage = Math.min(heightPercentage, widthPercentage);
+                var newFontSize = percentage.toFixed(2);
+
+                $body.css('font-size', newFontSize + '%');
+            } else {
+                $body.css('font-size', '100%');
+            }
+        }
+
+        /**
+         * Activating the website navigation dots according to the given slide name.
+         */
+        function activateNavDots(name, sectionIndex){
+            if(options.navigation){
+                $(SECTION_NAV_SEL).find(ACTIVE_SEL).removeClass(ACTIVE);
+                if(name){
+                    $(SECTION_NAV_SEL).find('a[href="#' + name + '"]').addClass(ACTIVE);
+                }else{
+                    $(SECTION_NAV_SEL).find('li').eq(sectionIndex).find('a').addClass(ACTIVE);
+                }
+            }
+        }
+
+        /**
+         * Activating the website main menu elements according to the given slide name.
+         */
+        function activateMenuElement(name){
+            if(options.menu){
+                $(options.menu).find(ACTIVE_SEL).removeClass(ACTIVE);
+                $(options.menu).find('[data-menuanchor="'+name+'"]').addClass(ACTIVE);
+            }
+        }
+
+        function activateMenuAndNav(anchor, index){
+            activateMenuElement(anchor);
+            activateNavDots(anchor, index);
+        }
+
+        /**
+        * Return a boolean depending on whether the scrollable element is at the end or at the start of the scrolling
+        * depending on the given type.
+        */
+        function isScrolled(type, scrollable){
+            if(type === 'top'){
+                return !scrollable.scrollTop();
+            }else if(type === 'bottom'){
+                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+            }
+        }
+
+        /**
+        * Retuns `up` or `down` depending on the scrolling movement to reach its destination
+        * from the current section.
+        */
+        function getYmovement(destiny){
+            var fromIndex = $(SECTION_ACTIVE_SEL).index(SECTION_SEL);
+            var toIndex = destiny.index(SECTION_SEL);
+            if( fromIndex == toIndex){
+                return 'none';
+            }
+            if(fromIndex > toIndex){
+                return 'up';
+            }
+            return 'down';
+        }
+
+        /**
+        * Retuns `right` or `left` depending on the scrolling movement to reach its destination
+        * from the current slide.
+        */
+        function getXmovement(fromIndex, toIndex){
+            if( fromIndex == toIndex){
+                return 'none';
+            }
+            if(fromIndex > toIndex){
+                return 'left';
+            }
+            return 'right';
+        }
+
+
+        function createSlimScrolling(element){
+            //needed to make `scrollHeight` work under Opera 12
+            element.css('overflow', 'hidden');
+
+            //in case element is a slide
+            var section = element.closest(SECTION_SEL);
+            var scrollable = element.find(SCROLLABLE_SEL);
+            var contentHeight;
+
+            //if there was scroll, the contentHeight will be the one in the scrollable section
+            if(scrollable.length){
+                contentHeight = scrollable.get(0).scrollHeight;
+            }else{
+                contentHeight = element.get(0).scrollHeight;
+                if(options.verticalCentered){
+                    contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight;
+                }
+            }
+
+            var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+
+            //needs scroll?
+            if ( contentHeight > scrollHeight) {
+                //was there already an scroll ? Updating it
+                if(scrollable.length){
+                    scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+                }
+                //creating the scrolling
+                else{
+                    if(options.verticalCentered){
+                        element.find(TABLE_CELL_SEL).wrapInner('<div class="' + SCROLLABLE + '" />');
+                    }else{
+                        element.wrapInner('<div class="' + SCROLLABLE + '" />');
+                    }
+
+                    element.find(SCROLLABLE_SEL).slimScroll({
+                        allowPageScroll: true,
+                        height: scrollHeight + 'px',
+                        size: '10px',
+                        alwaysVisible: true
+                    });
+                }
+            }
+
+            //removing the scrolling when it is not necessary anymore
+            else{
+                removeSlimScroll(element);
+            }
+
+            //undo
+            element.css('overflow', '');
+        }
+
+        function removeSlimScroll(element){
+            element.find(SCROLLABLE_SEL).children().first().unwrap().unwrap();
+            element.find(SLIMSCROLL_BAR_SEL).remove();
+            element.find(SLIMSCROLL_RAIL_SEL).remove();
+        }
+
+        function addTableClass(element){
+            element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+        }
+
+        function getTableHeight(element){
+            var sectionHeight = windowsHeight;
+
+            if(options.paddingTop || options.paddingBottom){
+                var section = element;
+                if(!section.hasClass(SECTION)){
+                    section = element.closest(SECTION_SEL);
+                }
+
+                var paddings = parseInt(section.css('padding-top')) + parseInt(section.css('padding-bottom'));
+                sectionHeight = (windowsHeight - paddings);
+            }
+
+            return sectionHeight;
+        }
+
+        /**
+        * Adds a css3 transform property to the container class with or without animation depending on the animated param.
+        */
+        function transformContainer(translate3d, animated){
+            if(animated){
+                addAnimation(container);
+            }else{
+                removeAnimation(container);
+            }
+
+            container.css(getTransforms(translate3d));
+
+            //syncronously removing the class after the animation has been applied.
+            setTimeout(function(){
+                container.removeClass(NO_TRANSITION);
+            },10);
+        }
+
+
+        /**
+        * Scrolls to the given section and slide
+        */
+        function scrollPageAndSlide(destiny, slide){
+            var section;
+
+            if (typeof slide === 'undefined') {
+                slide = 0;
+            }
+
+            if(isNaN(destiny)){
+                section = $('[data-anchor="'+destiny+'"]');
+            }else{
+                section = $(SECTION_SEL).eq( (destiny -1) );
+            }
+
+
+            //we need to scroll to the section and then to the slide
+            if (destiny !== lastScrolledDestiny && !section.hasClass(ACTIVE)){
+                scrollPage(section, function(){
+                    scrollSlider(section, slide);
+                });
+            }
+            //if we were already in the section
+            else{
+                scrollSlider(section, slide);
+            }
+        }
+
+        /**
+        * Scrolls the slider to the given slide destination for the given section
+        */
+        function scrollSlider(section, slide){
+            if(typeof slide != 'undefined'){
+                var slides = section.find(SLIDES_WRAPPER_SEL);
+                var destiny =  slides.find('[data-anchor="'+slide+'"]');
+
+                if(!destiny.length){
+                    destiny = slides.find(SLIDE_SEL).eq(slide);
+                }
+
+                if(destiny.length){
+                    landscapeScroll(slides, destiny);
+                }
+            }
+        }
+
+        /**
+        * Creates a landscape navigation bar with dots for horizontal sliders.
+        */
+        function addSlidesNavigation(section, numSlides){
+            section.append('<div class="' + SLIDES_NAV + '"><ul></ul></div>');
+            var nav = section.find(SLIDES_NAV_SEL);
+
+            //top or bottom
+            nav.addClass(options.slidesNavPosition);
+
+            for(var i=0; i< numSlides; i++){
+                nav.find('ul').append('<li><a href="#"><span></span></a></li>');
+            }
+
+            //centering it
+            nav.css('margin-left', '-' + (nav.width()/2) + 'px');
+
+            nav.find('li').first().find('a').addClass(ACTIVE);
+        }
+
+
+        /**
+        * Sets the state of the website depending on the active section/slide.
+        * It changes the URL hash when needed and updates the body class.
+        */
+        function setState(slideIndex, slideAnchor, anchorLink, sectionIndex){
+            var sectionHash = '';
+
+            if(options.anchors.length){
+
+                //isn't it the first slide?
+                if(slideIndex){
+                    if(typeof anchorLink !== 'undefined'){
+                        sectionHash = anchorLink;
+                    }
+
+                    //slide without anchor link? We take the index instead.
+                    if(typeof slideAnchor === 'undefined'){
+                        slideAnchor = slideIndex;
+                    }
+
+                    lastScrolledSlide = slideAnchor;
+                    setUrlHash(sectionHash + '/' + slideAnchor);
+
+                //first slide won't have slide anchor, just the section one
+                }else if(typeof slideIndex !== 'undefined'){
+                    lastScrolledSlide = slideAnchor;
+                    setUrlHash(anchorLink);
+                }
+
+                //section without slides
+                else{
+                    setUrlHash(anchorLink);
+                }
+            }
+
+            setBodyClass();
+        }
+
+        /**
+        * Sets the URL hash.
+        */
+        function setUrlHash(url){
+            if(options.recordHistory){
+                location.hash = url;
+            }else{
+                //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
+                if(isTouchDevice || isTouch){
+                    history.replaceState(undefined, undefined, '#' + url);
+                }else{
+                    var baseUrl = window.location.href.split('#')[0];
+                    window.location.replace( baseUrl + '#' + url );
+                }
+            }
+        }
+
+        /**
+        * Gets the anchor for the given slide. Its index will be used if there's none.
+        */
+        function getSlideAnchor(slide){
+            var slideAnchor = slide.data('anchor');
+            var slideIndex = slide.index(SLIDE_SEL);
+
+            //Slide without anchor link? We take the index instead.
+            if(typeof slideAnchor === 'undefined'){
+                slideAnchor = slideIndex;
+            }
+
+            return slideAnchor;
+        }
+
+        /**
+        * Sets a class for the body of the page depending on the active section / slide
+        */
+        function setBodyClass(){
+            var section = $(SECTION_ACTIVE_SEL);
+            var slide = section.find(SLIDE_ACTIVE_SEL);
+
+            var sectionAnchor = section.data('anchor');
+            var slideAnchor = getSlideAnchor(slide);
+
+            var sectionIndex = section.index(SECTION_SEL);
+
+            var text = String(sectionIndex);
+
+            if(options.anchors.length){
+                text = sectionAnchor;
+            }
+
+            if(slide.length){
+                text = text + '-' + slideAnchor;
+            }
+
+            //changing slash for dash to make it a valid CSS style
+            text = text.replace('/', '-').replace('#','');
+
+            //removing previous anchor classes
+            var classRe = new RegExp('\\b\\s?' + VIEWING_PREFIX + '-[^\\s]+\\b', "g");
+            $body[0].className = $body[0].className.replace(classRe, '');
+
+            //adding the current anchor
+            $body.addClass(VIEWING_PREFIX + '-' + text);
+        }
+
+        /**
+        * Checks for translate3d support
+        * @return boolean
+        * http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
+        */
+        function support3d() {
+            var el = document.createElement('p'),
+                has3d,
+                transforms = {
+                    'webkitTransform':'-webkit-transform',
+                    'OTransform':'-o-transform',
+                    'msTransform':'-ms-transform',
+                    'MozTransform':'-moz-transform',
+                    'transform':'transform'
+                };
+
+            // Add it to the body to get the computed style.
+            document.body.insertBefore(el, null);
+
+            for (var t in transforms) {
+                if (el.style[t] !== undefined) {
+                    el.style[t] = 'translate3d(1px,1px,1px)';
+                    has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+                }
+            }
+
+            document.body.removeChild(el);
+
+            return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+        }
+
+
+
+        /**
+        * Removes the auto scrolling action fired by the mouse wheel and trackpad.
+        * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
+        */
+        function removeMouseWheelHandler(){
+            if (document.addEventListener) {
+                document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+            } else {
+                document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            }
+        }
+
+
+        /**
+        * Adds the auto scrolling action for the mouse wheel and trackpad.
+        * After this function is called, the mousewheel and trackpad movements will scroll through sections
+        */
+        function addMouseWheelHandler(){
+            if (document.addEventListener) {
+                document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+            } else {
+                document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            }
+        }
+
+
+        /**
+        * Adds the possibility to auto scroll through sections on touch devices.
+        */
+        function addTouchHandler(){
+            if(isTouchDevice || isTouch){
+                //Microsoft pointers
+                var MSPointer = getMSPointer();
+
+                $document.off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+                $document.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+            }
+        }
+
+        /**
+        * Removes the auto scrolling for touch devices.
+        */
+        function removeTouchHandler(){
+            if(isTouchDevice || isTouch){
+                //Microsoft pointers
+                var MSPointer = getMSPointer();
+
+                $document.off('touchstart ' + MSPointer.down);
+                $document.off('touchmove ' + MSPointer.move);
+            }
+        }
+
+
+        /*
+        * Returns and object with Microsoft pointers (for IE<11 and for IE >= 11)
+        * http://msdn.microsoft.com/en-us/library/ie/dn304886(v=vs.85).aspx
+        */
+        function getMSPointer(){
+            var pointer;
+
+            //IE >= 11 & rest of browsers
+            if(window.PointerEvent){
+                pointer = { down: 'pointerdown', move: 'pointermove'};
+            }
+
+            //IE < 11
+            else{
+                pointer = { down: 'MSPointerDown', move: 'MSPointerMove'};
+            }
+
+            return pointer;
+        }
+        /**
+        * Gets the pageX and pageY properties depending on the browser.
+        * https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
+        */
+        function getEventsPage(e){
+            var events = [];
+
+            events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
+            events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+
+            //in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
+            if(isTouch && isReallyTouch(e)){
+                events.y = e.touches[0].pageY;
+                events.x = e.touches[0].pageX;
+            }
+
+            return events;
+        }
+
+        function silentLandscapeScroll(activeSlide){
+            FP.setScrollingSpeed (0, 'internal');
+            landscapeScroll(activeSlide.closest(SLIDES_WRAPPER_SEL), activeSlide);
+            FP.setScrollingSpeed(originals.scrollingSpeed, 'internal');
+        }
+
+        function silentScroll(top){
+            if(options.scrollBar){
+                container.scrollTop(top);
+            }
+            else if (options.css3) {
+                var translate3d = 'translate3d(0px, -' + top + 'px, 0px)';
+                transformContainer(translate3d, false);
+            }
+            else {
+                container.css('top', -top);
+            }
+        }
+
+        function getTransforms(translate3d){
+            return {
+                '-webkit-transform': translate3d,
+                '-moz-transform': translate3d,
+                '-ms-transform':translate3d,
+                'transform': translate3d
+            };
+        }
+
+        function setIsScrollable(value, direction){
+            switch (direction){
+                case 'up': isScrollAllowed.up = value; break;
+                case 'down': isScrollAllowed.down = value; break;
+                case 'left': isScrollAllowed.left = value; break;
+                case 'right': isScrollAllowed.right = value; break;
+                case 'all': FP.setAllowScrolling(value);
+            }
+        }
+
+
+        /*
+        * Destroys fullpage.js plugin events and optinally its html markup and styles
+        */
+        FP.destroy = function(all){
+            FP.setAutoScrolling(false, 'internal');
+            FP.setAllowScrolling(false);
+            FP.setKeyboardScrolling(false);
+            container.addClass(DESTROYED);
+
+            $window
+                .off('scroll', scrollHandler)
+                .off('hashchange', hashChangeHandler)
+                .off('resize', resizeHandler);
+
+            $document
+                .off('click', SECTION_NAV_SEL + ' a')
+                .off('mouseenter', SECTION_NAV_SEL + ' li')
+                .off('mouseleave', SECTION_NAV_SEL + ' li')
+                .off('click', SLIDES_NAV_LINK_SEL)
+                .off('mouseover', options.normalScrollElements)
+                .off('mouseout', options.normalScrollElements);
+
+            $(SECTION_SEL)
+                .off('click', SLIDES_ARROW_SEL);
+
+            //lets make a mess!
+            if(all){
+                destroyStructure();
+            }
+        };
+
+        /*
+        * Removes inline styles added by fullpage.js
+        */
+        function destroyStructure(){
+            //reseting the `top` or `translate` properties to 0
+            silentScroll(0);
+
+            $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
+
+            //removing inline styles
+            $(SECTION_SEL).css( {
+                'height': '',
+                'background-color' : '',
+                'padding': ''
+            });
+
+            $(SLIDE_SEL).css( {
+                'width': ''
+            });
+
+            container.css({
+                'height': '',
+                'position': '',
+                '-ms-touch-action': '',
+                'touch-action': ''
+            });
+
+            //removing added classes
+            $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
+                removeSlimScroll($(this));
+                $(this).removeClass(TABLE + ' ' + ACTIVE);
+            });
+
+            removeAnimation(container);
+
+            //Unwrapping content
+            container.find(TABLE_CELL_SEL + ', ' + SLIDES_CONTAINER_SEL + ', ' + SLIDES_WRAPPER_SEL).each(function(){
+                //unwrap not being use in case there's no child element inside and its just text
+                $(this).replaceWith(this.childNodes);
+            });
+
+            //scrolling the page to the top with no animation
+            $htmlBody.scrollTop(0);
+        }
+
+        /*
+        * Sets the state for a variable with multiple states (original, and temporal)
+        * Some variables such as `autoScrolling` or `recordHistory` might change automatically its state when using `responsive` or `autoScrolling:false`.
+        * This function is used to keep track of both states, the original and the temporal one.
+        * If type is not 'internal', then we assume the user is globally changing the variable.
+        */
+        function setVariableState(variable, value, type){
+            options[variable] = value;
+            if(type !== 'internal'){
+                originals[variable] = value;
+            }
+        }
+
+        /**
+        * Displays warnings
+        */
+        function displayWarnings(){
+            // Disable mutually exclusive settings
+            if (options.continuousVertical &&
+                (options.loopTop || options.loopBottom)) {
+                options.continuousVertical = false;
+                showError('warn', 'Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
+            }
+            if(options.continuousVertical && options.scrollBar){
+                options.continuousVertical = false;
+                showError('warn', 'Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
+            }
+
+            //anchors can not have the same value as any element ID or NAME
+            $.each(options.anchors, function(index, name){
+                if($('#' + name).length || $('[name="'+name+'"]').length ){
+                    showError('error', 'data-anchor tags can not have the same value as any `id` element on the site (or `name` element for IE).');
+                }
+            });
+        }
+
+        function showError(type, text){
+            console && console[type] && console[type]('fullPage: ' + text);
+        }
+    };
+})(jQuery, window, document, Math);
+
+
+        setTimeout(function() {
+    $('#ovme').fadeOut(3000);
+},1000); 
+     
+
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				menu: '#menu',
+				anchors: ['firstPage', 'secondPage', '3rdPage','4thPage', '5thPage', '6thPage', '7thPage', '8thPage', '9thPage'],
+				sectionsColor: ['#FFF','#FFF','#FFF', '#FFF', '#FFF','#FFF', '#FFF', '#FFF','#FFF'],
+				autoScrolling: false,
+                slidesNavigation: true,
+                onLeave: function(index, nextIndex, direction){
+						console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
+					},
+	       			afterLoad: function(anchorLink, index){
+						console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+	       			},
+					afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+						console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+					},
+	        		onSlideLeave: function(anchorLink, index, slideIndex, direction){
+						console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+	        		},
+
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+
+<ul id="menu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Overview</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">About</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Lpify</a></li>
+	<li data-menuanchor="4thPage"><a href="#4thPage">Seize</a></li>
+	<li data-menuanchor="5thPage"><a href="#5thPage">Connect</a></li>
+	<li data-menuanchor="6thPage"><a href="#6thPage">Youshare</a></li>
+	<li data-menuanchor="7thPage"><a href="#7thPage">Before</a></li>
+	<li data-menuanchor="8thPage"><a href="#8thPage">R-you</a></li>
+	<li data-menuanchor="9thPage"><a href="#9thPage">Rivolare</a></li>
+
+    </ul>
+
+<div id="myContainer">
+    <!---------------------------------------------------------------------------------------------------------------------------------------------------Overview---------------------------------------->
+	<div class="section" id="section0">
+
+        
+<div class="ovtext" id = "ovme" >
+            <br><br><br><br><br><br><br><br><br>
+    I mix technology with people and emotion.<br>Meanings are important to me<br> and luckily they are everywhere.
+		</div>
+    <div id = "mainbox">    
+        <div id = "up">
+            <div class = "m" id = "m1">
+        </div><a href = "#3rdPage">
+        <div class = "o" id = "o1">
+            <br><br><br><br><br>Lpify<br>
+ </div></a>
+        <div class = "m" id = "m2">
+        </div>
+            <a href = "#4thPage">
+             <div class = "o" id = "o2">
+            <br><br><br><br><br>Seize<br>
+ </div></a>
+        <div class = "m" id = "m3">
+        </div>
+                        <a href = "#5thPage">
+             <div class = "o" id = "o3">
+            <br><br><br><br><br>Connect<br>
+                            </div></a>
+            <div class = "m" id = "m4">
+        </div>            <a href = "#6thPage">
+            <div class = "o" id = "o4">
+            <br><br><br><br><br>Youshare<br>
+            </div></a>
+        </div>
+         
+        <div id = "down">
+        <div class = "m" id = "m5">      
+        </div>            <a href = "#7thPage">
+            <div class = "o" id = "o5">
+            <br><br><br><br><br>Before<br>
+            </div></a>
+        <div class = "m" id = "m6">
+        </div>
+                        <a href = "#8thPage">
+            <div class = "o" id = "o6">
+            <br><br><br><br><br>R-you<br>
+                            </div></a>
+        <div class = "m" id = "m7">
+        </div>
+                        <a href = "#9thPage">
+            <div class = "o" id = "o7">
+            <br><br><br><br><br>Rivolare<br>
+                            </div></a>
+            
+        </div>
+        </div>
+        
+    
+    
+    
+        </div>
+        <!---------------------------------------------------------------------------------------------------------------------------------------------------About---------------------------------------->
+
+	<div class="section" id="section1">
+        <div class = "p_int">
+	I can walk, I can talk, I can think and feel. What more do I need?<br>
+            Life can be awesome, I would like to keep in touch with the awesomeness.<br><br><a href = "http://cargocollective.com/soyeon" target="_blank">Things</a> I did before joining a graduate program in design. <br><a href = "https://drive.google.com/file/d/0B2pub4mZ8OcoOTRic0d6ZFYzN2s/view?usp=sharing" target="_blank"> Resume </a>with contact information enclosed.</div> 
+        </div>
+    
+    <!---------------------------------------------------------------------------------------------------------------------------------------------------Lpify---------------------------------------->
+    
+	<div class="section" id="section2">
+
+        
+			    <div class="slide" id="1.1" data-anchor="1.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        LPIFY
+                    <div class = "p_subtitle">
+                        Interactive Object · December 2014
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content">
+                                <div class = "p_left">
+                                <iframe src="https://player.vimeo.com/video/116915187??color=ffffff&title=0&byline=0&portrait=0" width="100%" height = "500px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                    </div>
+                                <div class = "p_right">
+                                Lpify is a hand-written music playlist & music player.<br> No matter how easy it is nowadays to stream music,<br> people still remember the unique feeling of having a hard-copy of songs that touched their hearts. <br>Lpify keeps those memories with the hand-writing of people. <br><br><br>Concept design and Software implementation : Soyeon Hwang<br>Choreography design and Digital  Fabrication : Riccardo Madini<br> Project Duration : 1 Month</div>
+                            </div>
+                        </div>
+        
+
+	    <div class="slide" id="1.2" data-anchor="1.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Internet of Things
+                    <div class = "p_subtitle">
+            LPIFY, December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+                <div class = "p_center"> The course started with an open discussion of Internet of Things(IoT) with Bruce Sterling, the science fiction writer who lead the cyber punk genre.<br> He and the professor Massimo Banzi were doing a project together, Casa Jasmina, a demo-house of IoT based in Turin.<br> In Casa Jasmina, people can experience the future of home empowered by digital technology.<br>I was so excited. I love home and I used to think that I could spend my life making things for my own dream house!<br><br> There were Many ideas at first naturally, such as a magnetic blanket, community garden made of lights, talking mirror and etc.<br>Yet, the more I thought about each idea and talked about those with friends and classmates, the more I got doubtful.<br> Does 'home' need more products? Is it necessary to spend resources and labor force to surround our living environment with more comforts?<br>Why does it feel somehow wrong to make home smart and automated? <br><br>
+Through repetitive discussions and iterations, we settled on a concept of the hybrid music player. After all, music didn't feel like a luxury or a toy.                   
+            </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="1.3" data-anchor="1.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        How it started.
+                    <div class = "p_subtitle">
+                        LPIFY, December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "lp0"></div>
+                <div class = "p_right" id = "lp1">
+            </div>         
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="1.4" data-anchor="1.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Attach it to the wall?
+                    <div class = "p_subtitle">
+                        LPIFY, December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "lp2"></div>
+                <div class = "p_right">
+                    While the initial idea was to copy the shape of traditional LP player,<br>
+                    to give more of a furniture feeling and to make it easier to catch public's attention,<br> we decided to put it on the wall.<br> The choreography that we aimed was to have a closed circular rail so that vinyls can loop.<br> Yet, rotating vinyls purely with gravity was harder than we though.
+
+                </div>          
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="1.5" data-anchor="1.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Finding the shape.
+                            <div class = "p_subtitle">
+                        LPIFY, December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">   
+            <div class = "p_left" id = "lp3"></div>
+                <div class = "p_right">
+                    So we decided to make two rails on each side.<br> The vinyl stays in the que and gets played when it arrives on the center.<br>Yet, the shape resembled a female's uterus.          </div>         
+            </div>
+		</div>
+        
+        
+          <div class="slide" id="1.6" data-anchor="1.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Final Design
+                    <div class = "p_subtitle">
+                        Lpify. December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "lp4"></div>
+                <div class = "p_right" id = "lp5">
+            </div>         
+            </div>
+		</div>
+            
+        
+      <div class="slide" id="1.7" data-anchor = "1.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Software implementation
+                    <div class = "p_subtitle">
+                       LPIFY, December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            <div class = "p_left" id = "lp6"></div>
+                <div class = "p_right">
+                                        In the back side of the player, there was a webcam that takes pictures of the vinyl. <br> Original picture → Rotate until the marker gets recognized <br>
+                    → Desaturate → Adaptive Thresholding → OCR algorithms<br>
+                    → Turn recognized texts it into a playlist → Music streaming API<br>
+                    <br>
+                    For there were many existing libraries, I could just combine those in need.<br>
+                    While it took some iterations to find an optimized parameter for hand writing recognition,<br> the final prototype could demonstrates how LPIFY works.
+            </div>           
+            </div>
+		</div>
+    
+        
+ 
+        
+        
+        </div>
+
+        <!---------------------------------------------------------------------------------------------------------------------------------------------------Seize---------------------------------------->
+    
+	<div class="section" id="section3">
+    
+    
+    
+    
+    
+			    <div class="slide" id="2.1" data-anchor = "2.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        SEIZE 
+                    <div class = "p_subtitle">
+                        Mobile Application · January 2015
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content">
+                                <div class = "p_left" id = "seize0">
+                                    </div>
+                                <div class = "p_right">
+                                SEIZE is a mobile application that helps users understand their distraction better through self-tracking. There are couple applications that help people stay away from those distractors by blocking certain websites, however, those are mostly temporary treatments and mainly concentrated on negative reinforcement.<br><br> SEIZE takes a different stand : it helps users self-track their main distractors with notifications<br> and provides a real-time data visualization of the amount of time that has been wasted on  distractors.<br> SEIZE connects the wasted time to an alternative future-- activities that could have been made possible with the time spent on distractors -- thus, allow users to stay motivated in changing their behavior patterns.<br>
+
+<br><br> <br>Concept Design : Fancesca Maina, Giulia Pignataro, Soyeon Hwang<br>Flow design & Visual Design : Fancesca Maina, Giulia Pignataro<br>Interaction Design & Front-end coding : Soyeon Hwang<br>Project Duration : 1 Month                           
+                                </div>
+                            </div>
+                        </div>
+                        
+            
+
+	    <div class="slide" id="2.2" data-anchor = "2.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        What? It is already midnight?
+                    <div class = "p_subtitle">
+ January 2015                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+ <div class = "p_center"> Professor Fabio Franchino gave us a brief to outline a new service/mobile app that allow self-knowledge throught self-tracking.<br> While other teams focused on tracking some tangible things, such as amount of water or food consumed, we wanted to experiment a bit.<br> Ideas went wild : we talked about counting the number of times people smile per day, number of times one think about the specific person and etc. <br><br> The final idea that we agreed on was about 'lost time.'<br> Let's track lost time.Let users choose a specific website/social network and track how much time is wasted on those distractors.<br> Considering that we are always living with distractions, it might be interesting to visualize how much time is actually spent on those.           </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="2.3" data-anchor = "2.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Positive attitude
+                    <div class = "p_subtitle">
+ January 2015                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "seize1"></div>
+                <div class = "p_right" >
+                    Since the ultimate goal of the app was to let users be aware of the lost time and change their behaviors we naturally sought how to design an effective behavior intervention. Of course, we could simpy tell 'You, reatrd. You spent 24 hours (a day!) on FB this week."<br><br> However, we wanted to bring some positive attitude. <br> We decided to provide an alternative future. "With the amount of time you lost, you could do .... this!" Of course, 'this' can vary based on the user's setting.
+            </div>                  
+            </div>
+		</div>
+        
+        
+        
+        <div class="slide" id="2.4" data-anchor = "2.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+Data Input & Visualization at the same time
+                            <div class = "p_subtitle">
+ January 2015                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "seize2"></div>
+                <div class = "p_right">
+                    We spent lots of time thinking about how to track this lost time. <br> Technically, tracking usage information through data log was impossible. <br> Of course, we can ask users to report their distraction at the end of the day, <br> but then the report wouldn't be accurate and it is verly likely to forget the reporting. <br><br>We settled on giving a notification in a predefined interval, and user can simply report if they are using any distracting services. Through this yes/no answer, the app can get how fequently one is being distrated. <br><br> I wanted to add another kind of behavior intervention through the self-report, which led to this blocking interface. When the user taps on the distractor, the black bar of the selected distractor gets longer blocking the alterantive future.</div>         
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="2.5" anchor = "2.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+Personal Tracking Report                    <div class = "p_subtitle">
+ January 2015                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "seize3"></div>
+                <div class = "p_right">The tracking result interface is designed to emphasize the lost time and what user could do with that time. The personal tone is being maintained with corresponding data visualization.
+                </div>         
+            </div>
+		</div>
+        
+                <div class="slide" id="2.6" anchor = "2.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Front-end Coding
+                    <div class = "p_subtitle">
+ January 2015                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "seize4"></div>
+                <div class = "p_right">Simpe HTML + CSS + JS coding was done through JSBin.<br> JS Bin was quite useful to test codes on the mobile device.
+                </div>         
+            </div>
+		</div>
+        
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    
+        <!---------------------------------------------------------------------------------------------------------------------------------------------------Connect---------------------------------------->
+    
+	<div class="section" id="section4">
+    
+    
+    
+    
+    <div class="slide" id="3.1" data-anchor="3.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        CONNECT
+                    <div class = "p_subtitle">
+                        Interactive Experience &  Wearable · February 2015
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content">
+                                <div class = "p_left">
+                                   <iframe width="90%" height="85%" align = "center" src="https://www.youtube.com/embed/2t-f341alOY" frameborder="0" ></iframe>
+                                    
+                               
+                                    </div>
+                                <div class = "p_right">
+Until the connection grows,<br> we are all strangers to one another, kept in one's own block of ice.<br> When we start the interaction,<br> conversation starts to flow, thoughts and feelings are shared,<br> and we liberate ourselves little by little just as the ice gets melted.<br> Through connection, we thaw each other out and<br> finally hold hands that bring the light and the warmth back to life.<br>
+
+<br><br> <br>Independent project<br>Project Duration : 1 Month
+                            </div>
+                        </div>
+        </div>
+        
+
+	    <div class="slide" id="3.2" data-anchor="3.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Cirque Du Soleil
+                    <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+                <div class = "p_center">The brief of professor Bill Keays, who is also a Tech advisor at the cireuqe du soleil, was similar to a real brief of a client.<br> They were designing a show with 'ice' theme and<br> we, as a designer had to come up with new interactive experiences that fit into the theme. <br>There were couple other conditions as well : the show is based on the arena, and it is going to be a traveling show.<br><br> While we know it was a practice, we were a little more excited than usual for it is cirque du soleil that is known for creating magical experiences!
+             
+            </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="3.3" data-anchor="3.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Everyone in my life used to be a stranger at one point.
+                    <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left"><iframe id='iframe' src='http://flickrit.com/slideshowholder.php?height=70&size=big&setId=72157650838985672&counter=true&trans=1&theme=1&thumbnails=1&transition=0&layoutType=responsive&sort=0' scrolling='no' frameborder='0'style='width:100%; height:100%;' > </iframe>
+                </div>
+                <div class = "p_right">
+                    The first thing that came into my mind when I heard 'snow' was it's transient nature<br>and how that can work as a meatphor of how human makes connection. <br>People, while the degree may vary, do not fully reveal themselves at first. It goes well with the image of the human kept in ice for you can see the person while not being able to touch the real matter. It takes continuous investment of time and efforts to get comfortable with each other. Once the connection is established, people start expressing their true feelings and thoughts without hesitation. This gives rise to the faces that they themselves have not yet discovered and expose them to new domain of life.<br><br> 
+
+The progress from frozen to thawed corresponds to  evolution of human relationship : from silence to conversation, from static to dynamic, from cold to warm, from isolation to integration. This transition happens in a smooth, rather inconspicuous manner, which resembles that of ice melting.  
+
+            </div>         
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="3.4" data-anchor="3.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+Fake Ice                            <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "connect0"></div>
+                <div class = "p_right">
+                    My goal was to make an ice block that human can actually go inside.<br>I searched for materials : I baked different types of plexiglas<br> to mimic ice's semi-transparency and to create little bubbles however, it didn't work that well. Differnet types of plexiglas didn't get mixed well. I decided to just go with painting over the polycarbonate.
+            </div>          
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="3.5" data-anchor="3.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+Let's paint!                    <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">   
+            <div class = "p_left" id = "connect1"></div>
+                <div class = "p_right" id = "connect2">
+                 
+            </div>         
+            </div>
+		</div>
+        
+        
+          <div class="slide" id="3.6" data-anchor="3.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+                            Let's paint!
+                            <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "connect3"></div>
+                <div class = "p_right">
+                    After layers of painting and erasiting it out, <br>my block of polycarbonate was covered with ice looking white paint.<br> I used a blue-filtered spotlight to add a cold atmosphere and to dramatize the look of an ice.<br> During the exhibition, people were dragged to this block of ice for its big scale.<br> They went inside the block, took pictures, posted on facebook and tagged me. :-) <br> I could understand why some people are so enthuaistic about uploading or posting things because<br> it feels nice when my work gets likes!
+            </div>         
+            </div>
+		</div>
+        
+        
+      <div class="slide" id="3.7" data-anchor = "3.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+                            Visitors, kept in the ice block.
+                            <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            <div class = "p_center" id = "connect4"></div>
+             </div>
+		</div>
+    
+                
+          <div class="slide" id="3.8" data-anchor="3.8">
+             <div class = "p_des">
+                        <div class = "p_title">
+                            Interactive Glove
+                            <div class = "p_subtitle">
+            Connect, February 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "connect5"></div>
+                <div class = "p_right">
+                    Interactive glove was also a part of my interactive experience. <br> This pair of glove shines when each glove gets touched to another.<br> Therefore to glow this glove up, one has to hold hands with each other. <br> The circuit was straightforward: make two open circuits and when gloves get touched they close the circuit and light up the LEDs.
+            </div>         
+            </div>
+		</div>
+    
+    
+    
+    
+    
+    
+    
+    </div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------Youshare---------------------------------------->
+    
+	<div class="section" id="section5">
+    
+    
+    
+        
+    
+			    <div class="slide" id="4.1" data-anchor = "4.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        YOU SHARE    
+                    <div class = "p_subtitle">
+                        Mobile Application · October 2014
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content"> 
+                                <div class = "p_left">
+                                    <iframe width="80%" height="80%" src="https://www.youtube.com/embed/pLb5WjrpeDM" align = "center" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                <div class = "p_right">
+                               Moving-in is a huge step in romantic relationship.<br>It makes sense. Ultimately, finding a person to share a daily activity and to experience little details of lives together is one of the most fundamental goals of relationship. <br> The question is, how are we choosing housemates now?<br><br>User Interviews & User Testing : Carola Barstch, Hanne Erikson, Soyeon Hwang <br>Concept Design & Wireframe design : Soyeon Hwang <br>Graphic Design : Hanne Erikson<br>Prototype Video : Carola Barstch<br>Project Duration : 1 Week                         
+                                </div>
+                            </div>
+                        </div>
+                        
+            
+
+	    <div class="slide" id="4.2" data-anchor = "4.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Where is my home?
+                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+ <div class = "p_center"> When Frog design gave a brief about designing a social mobile application, the very first idea was to make an app related to finding flats.<br> Two of my classmates, Hanna and Carola, were also into this idea. We were all expats in the town.<br> Hanna, a graphic designer from Norway, found a room relatively easily but she barely had any interaction with her housemates.<br> Carola, an industrial designer from Germany, had a daughter who was about to go to college in a new city apart from home.<br> And there was me, living in a temporary housing, still looking for a place to call home.    
+            </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="4.3" data-anchor = "4.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Interviews
+                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "ys1"></div>
+                <div class = "p_right" >After setting up the general direction of the app, we started user research and competitor analysis. Since I had experiences in user research, I led this phase of the design process. We got in touch with 7 students who have experiences of house searching in Ticino and conducted contextual interviews. <br><br>We asked interviewees various questions about their experiences in finding housing and settling down in a new city, about their overall search plans, medium they used, search criteria, experiences related to flatmates and etc. We also studied our competitors, offline real-estate agencies, websites and mobile application. Although there were handful of websites and application specialized in housing serach, it was easy to find opportunities and needs for different application
+            </div>                  
+            </div>
+		</div>
+        
+        
+        
+        <div class="slide" id="4.4" data-anchor = "4.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+'Fit' is more than a skin-deep.
+                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "ys2"></div>
+                <div class = "p_right">Through the research phase, we found various opportunities and needs. Most importnat ones were, some students expect flatmates to be more than just acquaintances They want to watch movies, take a walk, and share music together and they are willing to spend time and effort to get to know the prospective flatmates. However, currently, it is not easy to get to know the flatmate before hand. A simple description or a brief meeting does not give a chance to get to know that person and some questions are hard to ask. 
+
+            </div>         
+            </div>
+		</div>
+        
+          <div class="slide" id="4.5" anchor = "4.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+                       Interaction flow 
+                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left">
+                
+              <iframe id='iframe' src='http://flickrit.com/slideshowholder.php?height=100&size=big&setId=72157652065844646&counter=true&trans=1&theme=1&thumbnails=1&transition=0&layoutType=responsive&sort=0' scrolling='no' frameborder='0'style='width:70%; height:100%;' ></iframe>
+                
+                  </div>
+                <div class = "p_right">After the 3 days of user research and feature analysis, we envisioned a mobile application that takes a whole different approach on house sesarch. YouShare changes the paradigm of current house search from property-person match to inhabitants match. youShare matches and connects future housemates based on their needs and preferences. Housemates who are searching for a newcomer and the newcomer will be connected, and naturally property information will be delivered in a personal and reliable manner.<br><br>A common behavior pattern found in the user resesarch was, people usually start house searching (i.e, going through postings on the website) more than three months in advance but they do not get serious about it (making phone calls) until the moving date comes close. Therefore, the key feature of an app is an automated search (based upon the profile) and real-time notification.<br>We follow the flow of the dating apps; user will first make a profile verified by an email address or phone number, and answer various questions that are closely related to life as a housemate. This profile making process becomes a preliminary verification system. Then the user will see the result of matches. This match result can be filtered, for example, one can see the housemate who already has secured a place. We went through couple rounds of wireframing with an advice session from Frog design to come up with.
+            </div>         
+            </div>
+		</div>
+        
+        <div class="slide" id="4.6" anchor = "4.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Process 
+                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "ys3"></div>
+                <div class = "p_right" id = "ys4">
+            </div>         
+            </div>
+		</div>
+        
+      
+      
+    
+        <div class="slide" id="4.7" anchor = "4.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+A fresh but reliable look and feel                    <div class = "p_subtitle">
+                        December 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "ys0">
+              
+                </div>
+                <div class = "p_right">Since our main user was college students or young professionals, we decided to rely on the established design language for the users are comfortable with those. 
+            </div>         
+            </div>
+		</div>
+    
+        
+        
+        <div class="slide" id="4.8" anchor = "4.8">
+             <div class = "p_des">
+                        <div class = "p_title">
+Oh, interesting.                    <div class = "p_subtitle">
+                        YOUSHARE · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left">
+              
+        <iframe src="https://player.vimeo.com/video/116037533?color=ffffff&title=0&byline=0&portrait=0" width="45%" height="600" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                <div class = "p_right">That was not the end. Last but not least, we tested our app Youshare with three users.<br> The insights and future direction are all included in the final reports. Frog design appreciated thorough user research and feedback analysis of the user testing. Students also were excited to see a change of perspective -- tedious house searching process turned into an opportunity to meet and connect with people. Overall, I was glad to have an app that challenges the image of digital technology isolating people but instead questions 'Wouldn't it be better to live with a person who welcomes you at home and with whom you can grab a beer together?' 
+            </div>         
+            </div>
+		</div>
+        
+    
+    
+    
+    </div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------Before---------------------------------------->
+    
+	<div class="section" id="section6">
+    
+    
+    
+    
+    
+    
+    
+    
+     
+        
+
+	    <div class="slide" id="5.1" data-anchor="5.1">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        BEFORE
+                    <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+                        <div class = "p_content">    
+
+            <div class = "p_center">
+The brief was to use typeface only to deliver the message of the film and to capture the potential audience.<br>Considering that lots of movie nowadays are relyingon visual effects and as a rule of thumb pictures can deliver a lot more information,<br> including the nuance of the movie, it is natural to have film advertising full of graphic images. <br>However, it was also rue that nowadays film advertising is sipmly capturing a good looking scene from a movie and put titles and director's name on it. <br><br> In that sense, the brief sounded like an interesting challenge, and I would like to find a way to use this type-face only publicizing into an opportunity to discover something. <br><br>Independent Projec<br>Project Duraiton : 1 Week           </div>
+            </div>     
+        </div>
+        
+        	    <div class="slide" id="5.2" data-anchor="5.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Research
+                    <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "b0"></div>
+                <div class = "p_right">I decided to work on Before Trilogy by Richard Linklater.Each film in Before trilogy portrays a day-long interaction of two main characters Céline and Jesse.<br> During this short time frame, relationship between the two evolves in a remarkable speed, from strangers to lovers, from forgotten lovers to life partners. <br><br>
+While the transition is dramatic, well-crafted dialogues make audiences smear into the characters and accept the dynamic nature of human relationship, which is a recurrent theme of Richard Linklater’s work.
+<br><br>I thought type-based advertisement can unleash the power of colloquial yet rich dialogues of Before trilogy andI spent a lot of time choosing the right quote that depictsthe transformation of character‘s attitude and the altered tone of conversation as well as the overall image of the film.
+<br><br>
+So many valuable things in life disappear : relationships, moments,  emotions, and words.  Yet, being disappeared is just one of the states that when the time comes, things reappear.<br>
+Everything all comes and goes was overarching theme that I wanted to deliver.
+            </div>         
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="5.3" data-anchor="5.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+Thermochromic Ink
+                    <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "b1"></div>
+                <div class = "p_right">
+The challenge was to convey the dynamics of main character’s relationship through a static medium, bilboard poster.<br> Through reseasrch I discovered thermochromic inks that change their colors based on the temperature. Albeit not popular, the thermochromic inks are affordable and adapt at mass production.
+<br><br>
+Inspired by the idea of temperature sensitivity, <br>I reviewed scripts of each film and gathered salient quotes that vividly depict the evolution of the relationship. 
+<br><br>
+Then, I designed a poster, a paper cup holder, an interaction for digital platform and a ticket that can promote Linklater’s Before trilogy.</div>          
+            </div>
+		</div>
+        
+        
+        <div class="slide" id="5.4" data-anchor="5.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+Before Sunrise
+                            <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">   
+            <div class = "p_left" id = "b2"></div>
+                <div class = "p_right"> Céline and Jesse first meet on the train in Before Sunrise.<br> After a small talk, they decide to spend time together in Vienna till the morning comes. Texts in the poster follow this progression : as the night comes (and air cools down), hidden texts that are filled with love and youthful passion get revealed.               </div>
+                       
+            </div>
+		</div>
+        
+        
+          <div class="slide" id="5.5" data-anchor="5.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+Conversation over a cup of coffee                            <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "b3"></div>
+                <div class = "p_right"> 
+                9 years later in Before Sunset, Céline and Jesse meet for the second time in Paris. They go to cafe,  take river boats and spend some time in Céline’s place. <br>
+ A ‘heated’ conversation continues through the entire afternoon; however, in the last minutes, they get into the mood that only music and few words linger.  
+                </div>
+                     
+            </div>
+		</div>
+        
+        
+      <div class="slide" id="5.6" data-anchor = "5.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+                            In love or Out of love
+                            <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            <div class = "p_left" id = "b4"></div>
+                <div class = "p_right">   Through QR codes in the poster and the paper cup holder, 
+<br>or through Url access, people reach the digital platform. <br>
+The digital experience starts with a simple interaction of asking the visitor’s feeling,<br>either ‘in love’ or ‘out of love.’             </div>           
+            </div>
+		</div>
+    
+                
+          <div class="slide" id="5.7" data-anchor="5.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+                            To Mobile Application
+                            <div class = "p_subtitle">
+           Intearctive Object · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">    
+            <div class = "p_left" id = "b5"></div>
+                <div class = "p_right"><br><br>The concept of dynamic texts is carried on to the digital touch point.<br>  The most recent visitor’s answer to ‘in love / out of love’ question determines<br>
+if the full quote gets revealed (out of love) or remains hidden. (in love)<br> Thus, the quote will keep changing, half of its text being faded in and out.
+            </div>         
+            </div>
+		</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------R-you---------------------------------------->
+    
+	<div class="section" id="section7">
+    
+    
+    
+        
+        
+        
+			    <div class="slide" id="6.1" data-anchor = "6.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        R-You    
+                    <div class = "p_subtitle">
+                        Interactive Object · October 2014
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content"> 
+                                <div class = "p_left" id = "r0">
+            
+                                    </div>
+                                <div class = "p_right">
+1 out of 68 children are born with Autism Spectrum Disorders.<br>
+Children with Autism have difficulties in various domains but most conspicuously,<br>communication and social abilities. Around 40 to 60 thousand dollars per year are spent for the behavior therapy for a single child with autism but there is no perfect cure identified yet.
+<br><br>
+So, various methods are used to help children with autism. Games have been recognized as a very efficient training approach for it holds the children's attention most effectively. However, so far in the market, there is only very few games designed specifically for social learning of children with autism spectrum disordres. Those games were mostly based on dolls, cards, or screens, with no real interactions with another person.<br><br>
+
+R-You is the only game with a tangible interface that facilitates social interaction<br> for children with autism spectrum disorder, in particular for children with high functioning autism.    
+                                <br><br> <br>Concept Design and physical computing : Soyeon Hwang<br> Shape Design and Digital Fabrication : Francesca Mainea <br>Project Duration : 1 Week
+                                </div>
+                            </div>
+                        </div>
+                        
+            
+
+	    <div class="slide" id="6.2" data-anchor = "6.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        I don't like gaming.
+                    <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+ <div class = "p_center">  After couple days of introduction to physical computing, professor Massimo Banzi told us to design a boardgame as a practice. <br> For I have never found gaming attractive, I got bored at it too quickly and<br> I didn't want to get into that gamer mindset whose goal is at the all about winning.<br> So I started to think about social games, type of games that make everyone laugh wihout caring too much about scores.   
+            </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="6.3" data-anchor = "6.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+There is something that I wanted to tell you.
+                            <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "r1"></div>
+                <div class = "p_right">The principle of R-you is like this. <br>
+                    Two players sit in front of each other with R-you in between<br>
+                    They look into their eyes through an eye hole of R-you.<br>
+                    A quizzer says something and a guess determines if that statement was from the R-you's message box or from the quizzer. <br><br>The message box includes statements like <br>
+                "You always look nice, but unusually nice today."<br>
+                "I think you are secretly into me."<br>
+                "This game is really cool."<br>
+                "I think you must be a fantastic dancer."</div>                  
+            </div>
+		</div>
+        
+        
+        
+        <div class="slide" id="6.4" data-anchor = "6.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+Production                    <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "r2"></div>
+                <div class = "p_right">We only had 3 days to get this project done.<br>Therefore, Francesca and I decided to divide the work and focus on our specialties.<br>She worked on digital fabrication and I worked on arduino circuits and code. We initially wanted to have a digital LED screen that shows various messages, however, the LED screen didn't get connected well. The message box has to rotate 180 degree in each game, but this rotation made the screen connection unstable. So we decided to use an analogue message box, with rolled statments inside. 
+            </div>         
+            </div>
+		</div>
+        
+          <div class="slide" id="6.5" anchor = "6.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Hi, I'm R-you.
+                    <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "r0">
+                  </div>
+                <div class = "p_right" id = "r3">
+            </div>         
+            </div>
+		</div>
+        
+        <div class="slide" id="6.6" anchor = "6.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+Interface                    <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "r4"></div>
+                <div class = "p_right"> The interface has four components : the message box, the magnified eye holes through which players examine each other's eye, the buttons and the LED strip located in the mouth part of R-you that tells the score.
+            </div>         
+            </div>
+		</div>
+        
+      
+      
+    
+        <div class="slide" id="6.7" anchor = "6.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+A Red-face Maker                    <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "r5">
+              
+                </div>
+                <div class = "p_right">The best part of R-you project was apparently the exhibition.<br>Everyone was laughing so hard. They also got the concept quite easily while we were worried a little about this.<br> One of the visitors called this game 'a red-face maker' because some of the statements like 'you are hot!' dyed the face of the player with crimson color.
+            </div>         
+            </div>
+		</div>
+    
+          
+        <div class="slide" id="6.8" anchor = "6.8">
+             <div class = "p_des">
+                        <div class = "p_title">
+Business Time
+                            <div class = "p_subtitle">
+                        R-you · October 2014
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "r6">
+              
+                </div>
+                <div class = "p_right">But that was not it.<br>Later in the 'From Design To Business' course, Francesca and I developed this R-you further. <br> We found a target user, a children with ASDs, and specialized some of R-you's functionality into that target. TWith this, we won the Business Idea 2015 and got initial investment to develop this idea further. <br><br> What's left is to validate this R-you through expert interviews and testing with children with ASDs, and seek a next route to put this R-you game into the outer world.
+            </div>         
+            </div>
+		</div>
+    
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+            <!---------------------------------------------------------------------------------------------------------------------------------------------------Rivolare---------------------------------------->
+    
+	<div class="section" id="section8">
+    
+    
+    
+    
+   
+    
+    
+    
+        
+    
+			    <div class="slide" id="7.1" data-anchor = "7.1">
+                    <div class = "p_des">
+                        <div class = "p_title">
+                        RIVOLARE    
+                    <div class = "p_subtitle">
+                        Advanced Service · March 2015
+                        </div>
+                            </div>
+                        </div>
+                            <div class = "p_content">
+                            <div class = "p_left" id = "rv0"> 
+                                    </div>
+                                <div class = "p_right">
+Flying the sky is one of the most consistently pursued dreams of human beings. <br>
+Nowadays, lots of people are enjoying paraglidings, however,<br> there is no good service that helps people share the experience of flying sky. <br><br>
+Rivolare is an integrated service targeted for paragliders. It provides an opportunity to discover new paragliding experiences, capture and relive their own, and share them even during the ride through live broadcast. Rivolare empowers the paragliding user by giving them a tool to encapsulate the meaningful moments as well as sharing those to people and community. <br><br>Reseasrch & Concept Design : Francesca Maina, Giulia Pignataro, Soraia Binz, Soyeon Hwang<br>Visual Design : Giulia Piganataro<br>Physical Device Prototype : Francesca Maina<br>Mobile Application Prototype : Soyeon Hwang<br>Web Application Prototype : Soraia Binz<br>Project Duration : 3 Weeks                         
+                                </div>
+                    </div>
+                            </div>
+                       
+                        
+            
+
+	    <div class="slide" id="7.2" data-anchor = "7.2">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Advanced Service
+                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+ <div class = "p_center"> The brief given by Frog Design was to design an advaced service with the focus on sports. <br> There were several criteria that makes 'advanced' service : it has to be<br> connected (a service can be everywhere, anytime, always ready and available for the customer, regardless of channels, physical locations and time of the day), <br>smart(be responsitve to various situations and learn from feedback data)<br> and user-centered. <br><br> While the description was rather grand, in the end, it was about<br> designing a service that can connect various dots : the need of user, the various technologies and devices, and data mining technology. <br> Initial task for us was to understand the user, paragliders, since none of the team members was a professional flier.
+
+            </div>     
+            </div>
+		</div>
+        
+        
+        	    <div class="slide" id="7.3" data-anchor = "7.3">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        User Research
+                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_left" id = "rv1"></div>
+                <div class = "p_right"> For it was not easy to have a in-person interviews,<br> we focused on getting contacts through paragliding communities in the web.<br> We joined more than 80 facebook groups and posted a notification about brief introduction of our project and a contact information along with a survey link.<br><br>Based on 7 in person interviews (either in real life or via skype) and 32 survey ansewrs, we created 4 user archetypes.<br> Exsiting paragliding related services were also analyzed based on the feature. Then, the services were categorized by the user experience that has been discovered through user research.
+            </div>                  
+            </div>
+		</div>
+        
+        
+        
+        <div class="slide" id="7.4" data-anchor = "7.4">
+             <div class = "p_des">
+                        <div class = "p_title">
+User Journey                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_center" id = "rv2"></div>
+                       
+            </div>
+		</div>
+                
+        
+        <div class="slide" id="7.5" data-anchor = "7.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+Existing Service Analysis
+                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">
+            
+            <div class = "p_center" id = "rv3"></div>
+                       
+            </div>
+		</div>
+        
+        
+          <div class="slide" id="7.5" anchor = "7.5">
+             <div class = "p_des">
+                        <div class = "p_title">
+Ideas and Ideas                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "rv4">
+            
+                
+                  </div>
+                <div class = "p_right">During ideation, various appraoches came up.<br> Our favorite was Chroma Wings that deliver the status of the paraglider through the wings of parachute. The color can reflect the flight status as in red, for emergency and green, for thermals. However, we had difficulties finding a technical solution. For the best flight, the wing has to be very light and resistant and currnetly existing electric fabric(that can change color) could not fit in.<br><br>We went back to ideation session and this time focused on 'sharing' the experience with others.
+            </div>         
+            </div>
+		</div>
+        
+        
+      
+    
+        <div class="slide" id="7.6" anchor = "7.6">
+             <div class = "p_des">
+                        <div class = "p_title">
+Idea Development                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "rv5">
+              
+                </div>
+                <div class = "p_right" id = "rv6">
+            </div>         
+            </div>
+		</div>
+    
+        
+        
+        
+        
+        <div class="slide" id="7.7" anchor = "7.7">
+             <div class = "p_des">
+                        <div class = "p_title">
+                        Final Concept 
+                    <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left"><br><br><iframe id='iframe' src='http://flickrit.com/slideshowholder.php?height=100&size=big&setId=72157652114050736&counter=true&trans=1&theme=1&thumbnails=1&transition=0&layoutType=responsive&sort=0' scrolling='no' frameborder='0'style='width:80%; height:700px;' ></iframe>
+</div>
+                <div class = "p_right">
+                    Final concept allows paragliders to discover new experiences, captureand relive their own, and even share them live through a service that uses a 360 camera and mic to capture flight experiences and meaningfully aggregate existing log data with multimedia.
+            </div>         
+            </div>
+		</div>
+        
+      
+        <div class="slide" id="7.8" anchor = "7.8">
+             <div class = "p_des">
+                        <div class = "p_title">
+Demo                  <div class = "p_subtitle">
+                        RIVOLARE · March 2015
+                        </div>
+                            </div>
+                        </div>
+            <div class = "p_content">     
+            <div class = "p_left" id = "rv7">
+              
+       </iframe>
+                </div>
+                <div class = "p_right">Demonstaration time was, as always, fun. <br>Francesca made a 3d printed 360 camera (by putting two webcams together), put that camera over her knees and acted as a paraglider. I made a mobile application demo using python and we showed the intearction of the live flght share interation. Although the connection was through not wireless and we directly put the camera cable into the computer, it was enough to show the two end of the users.<br> The web interaction was shown through a demo video and the teachers and other students found the concept interesting. 
+            </div>         
+            </div>
+		</div>
+        
+    
+    
+ 
+    
+    
+    
+    
+    
+    </div>
+
+    
+
+    
+    </div>
+</body>
+</html>
